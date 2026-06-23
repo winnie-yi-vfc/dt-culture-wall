@@ -641,48 +641,92 @@
         }
 
         /* ==================== SLIDE 4: Learning ==================== */
-        #slide-4 .content {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-        }
-
         #slide-4 .section-label {
             color: var(--accent-green);
         }
 
+        #slide-4 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
+        }
+
+        #slide-4 .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
         #slide-4 .story-card {
-            background: rgba(16, 185, 129, 0.1);
-            border-left: 6px solid var(--accent-green);
-            padding: 40px;
-        }
-
-        #slide-4 .story-quote {
-            font-family: 'Manrope', sans-serif;
-            font-size: 26px;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--dark);
-            margin-bottom: 20px;
-        }
-
-        #slide-4 .story-author {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-
-        #slide-4 .academy-list {
+            background: white;
+            border: var(--border) solid rgba(16, 185, 129, 0.15);
+            border-left: 4px solid var(--accent-green);
+            padding: 18px;
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+        }
+
+        #slide-4 .story-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+        }
+
+        #slide-4 .story-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        #slide-4 .story-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-green), #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        #slide-4 .story-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 12px;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        #slide-4 .story-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            flex: 1;
+        }
+
+        #slide-4 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-4 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
         }
 
         #slide-4 .academy-item {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 25px;
+            border-left: 4px solid var(--accent-green);
+            padding: 18px;
             transition: all 0.3s;
         }
 
@@ -696,19 +740,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         #slide-4 .academy-icon {
-            font-size: 32px;
+            font-size: 28px;
         }
 
         #slide-4 .tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 3px;
             color: white;
         }
@@ -718,16 +762,18 @@
 
         #slide-4 .academy-title {
             font-family: 'Manrope', sans-serif;
-            font-size: 18px;
+            font-size: 13px;
             font-weight: 800;
             color: var(--dark);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         #slide-4 .academy-desc {
-            font-size: 14px;
+            font-size: 12px;
             color: rgba(0, 0, 0, 0.6);
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
         /* ==================== SLIDE 5: Social ==================== */
@@ -1228,44 +1274,91 @@
             </div>
         </div>
 
-        <!-- SLIDE 4: Learning (REFERENCE DESIGN) -->
+        <!-- SLIDE 4: Learning -->
         <div class="slide" id="slide-4">
             <div class="slide-number">04</div>
             <div class="content">
-                <div>
-                    <div class="section-label">// LEARNING & GROWTH</div>
-                    <h1 class="title">CONTINUOUS<br>GROWTH</h1>
-                    <p class="subtitle">Never stop learning</p>
+                <div class="section-label">// LEARNING & GROWTH</div>
+                <h1 class="title">CONTINUOUS GROWTH</h1>
+                <p class="subtitle">Learning stories from our core values</p>
 
-                    <div class="story-card">
-                        <p class="story-quote">"Growth happens when we step out of our comfort zone and support each other along the way."</p>
-                        <p class="story-author">— ECHO WANG, PRODUCT</p>
-                    </div>
-                </div>
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="stories-grid">
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🤝</div>
+                                    <div class="story-value">Trust &<br>Integrity</div>
+                                </div>
+                                <p class="story-text">"Being transparent about challenges helped us deliver on time. When I admitted I needed help, the team rallied together."</p>
+                            </div>
 
-                <div class="academy-list">
-                    <div class="academy-item">
-                        <div class="academy-header">
-                            <div class="academy-icon">🤖</div>
-                            <div class="tag tag-new">NEW</div>
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">⭐</div>
+                                    <div class="story-value">Customer<br>First</div>
+                                </div>
+                                <p class="story-text">"We redesigned the checkout flow after user feedback. Listening to customers reduced cart abandonment by 30%."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">⚡</div>
+                                    <div class="story-value">Embrace<br>the Now</div>
+                                </div>
+                                <p class="story-text">"Instead of waiting for the perfect solution, we shipped an MVP and iterated. Speed matters more than perfection."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🌱</div>
+                                    <div class="story-value">Growth<br>Mindset</div>
+                                </div>
+                                <p class="story-text">"Learning Kubernetes was challenging, but our team study group made it possible. We all grew together."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🏆</div>
+                                    <div class="story-value">Win<br>Together</div>
+                                </div>
+                                <p class="story-text">"Cross-team collaboration on the API gateway project showed what we can achieve when we work as one."</p>
+                            </div>
                         </div>
-                        <div class="academy-title">AI FOR EVERYONE</div>
-                        <div class="academy-desc">Understand AI basics and apply to your work</div>
                     </div>
-                    <div class="academy-item">
-                        <div class="academy-header">
-                            <div class="academy-icon">🔄</div>
-                            <div class="tag tag-hot">HOT</div>
+
+                    <div class="sidebar">
+                        <div class="sidebar-title">VF ACADEMY</div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🤖</div>
+                                <div class="tag tag-new">NEW</div>
+                            </div>
+                            <div class="academy-title">AI FOR EVERYONE</div>
+                            <div class="academy-desc">Understand AI basics and apply to your work</div>
                         </div>
-                        <div class="academy-title">AGILE MINDSET</div>
-                        <div class="academy-desc">Work smarter, deliver faster</div>
-                    </div>
-                    <div class="academy-item">
-                        <div class="academy-header">
-                            <div class="academy-icon">🌱</div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🔄</div>
+                                <div class="tag tag-hot">HOT</div>
+                            </div>
+                            <div class="academy-title">AGILE MINDSET</div>
+                            <div class="academy-desc">Work smarter, deliver faster</div>
                         </div>
-                        <div class="academy-title">GROWTH PATH</div>
-                        <div class="academy-desc">Career development workshops</div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🌱</div>
+                            </div>
+                            <div class="academy-title">GROWTH PATH</div>
+                            <div class="academy-desc">Career development workshops</div>
+                        </div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">💻</div>
+                            </div>
+                            <div class="academy-title">TECH TALKS</div>
+                            <div class="academy-desc">Monthly sessions on latest tech trends</div>
+                        </div>
                     </div>
                 </div>
             </div>
