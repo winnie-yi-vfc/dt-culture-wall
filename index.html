@@ -290,15 +290,8 @@
 
         /* ==================== SLIDE 2: People ==================== */
         #slide-2 .content {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 50px;
-            align-items: center;
-        }
-
-        #slide-2 .main-col {
-            display: flex;
-            flex-direction: column;
+            padding-top: 80px;
+            padding-bottom: 80px;
         }
 
         #slide-2 .title {
@@ -307,99 +300,106 @@
 
         #slide-2 .subtitle {
             font-size: 20px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         #slide-2 .teams-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 40px;
         }
 
         #slide-2 .team-card {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            text-align: center;
+            padding: 0;
+            overflow: hidden;
             transition: all 0.3s;
         }
 
         #slide-2 .team-card:hover {
             border-color: var(--secondary);
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 var(--secondary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(67, 97, 238, 0.2);
         }
 
         #slide-2 .team-photo {
             width: 100%;
-            height: 180px;
+            height: 280px;
             background: linear-gradient(135deg, var(--secondary), #667eea);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 72px;
-            margin-bottom: 25px;
+            font-size: 96px;
+        }
+
+        #slide-2 .team-info {
+            padding: 30px;
+            text-align: center;
         }
 
         #slide-2 .team-name {
-            font-family: 'Manrope', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--dark);
-        }
-
-        #slide-2 .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        #slide-2 .sidebar-title {
             font-family: 'Archivo Black', sans-serif;
             font-size: 24px;
+            font-weight: 900;
             color: var(--dark);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        #slide-2 .team-with-joiner {
+            border-left: 4px solid var(--secondary);
         }
 
         #slide-2 .new-joiner {
-            background: white;
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--secondary);
-            padding: 25px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
-            gap: 20px;
-            transition: all 0.3s;
+            gap: 15px;
         }
 
-        #slide-2 .new-joiner:hover {
-            border-color: var(--secondary);
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 var(--secondary);
+        #slide-2 .joiner-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--secondary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
         }
 
         #slide-2 .joiner-photo {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--secondary), #667eea);
+            background: linear-gradient(135deg, #10b981, #34d399);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             flex-shrink: 0;
+        }
+
+        #slide-2 .joiner-info {
+            text-align: left;
+            flex: 1;
         }
 
         #slide-2 .joiner-name {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         #slide-2 .joiner-role {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(0, 0, 0, 0.6);
         }
 
@@ -928,45 +928,43 @@
         <div class="slide" id="slide-2">
             <div class="slide-number">02</div>
             <div class="content">
-                <div class="main-col">
-                    <div class="section-label" style="color: var(--secondary)">// OUR PEOPLE</div>
-                    <h1 class="title">GREAT<br>TOGETHER</h1>
-                    <p class="subtitle">Building the future as one team</p>
+                <div class="section-label" style="color: var(--secondary)">// OUR PEOPLE</div>
+                <h1 class="title">GREAT<br>TOGETHER</h1>
+                <p class="subtitle">Building the future as one team</p>
 
-                    <div class="teams-grid">
-                        <div class="team-card">
-                            <div class="team-photo">👥</div>
+                <div class="teams-grid">
+                    <div class="team-card">
+                        <div class="team-photo">👥</div>
+                        <div class="team-info">
                             <div class="team-name">PLATFORM</div>
                         </div>
-                        <div class="team-card">
-                            <div class="team-photo">👥</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👥</div>
+                        <div class="team-info">
                             <div class="team-name">FRONTEND</div>
                         </div>
-                        <div class="team-card">
-                            <div class="team-photo">👥</div>
+                    </div>
+                    <div class="team-card team-with-joiner">
+                        <div class="team-photo">👥</div>
+                        <div class="team-info">
                             <div class="team-name">BACKEND</div>
+                            <div class="new-joiner">
+                                <div class="joiner-badge">NEW</div>
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div class="joiner-photo">👨‍💻</div>
+                                    <div class="joiner-info">
+                                        <div class="joiner-name">Tony Tao</div>
+                                        <div class="joiner-role">Backend Engineer</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-card">
-                            <div class="team-photo">👥</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-photo">👥</div>
+                        <div class="team-info">
                             <div class="team-name">DEVOPS</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar">
-                    <div class="sidebar-title">NEW JOINERS</div>
-                    <div class="new-joiner">
-                        <div class="joiner-photo">👨‍💻</div>
-                        <div class="joiner-info">
-                            <div class="joiner-name">Tony Tao</div>
-                            <div class="joiner-role">Backend Engineer</div>
-                        </div>
-                    </div>
-                    <div class="new-joiner">
-                        <div class="joiner-photo">👩‍💼</div>
-                        <div class="joiner-info">
-                            <div class="joiner-name">Sissi Zhao</div>
-                            <div class="joiner-role">Product Manager</div>
                         </div>
                     </div>
                 </div>
