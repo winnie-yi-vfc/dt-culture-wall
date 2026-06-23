@@ -777,25 +777,21 @@
         }
 
         /* ==================== SLIDE 5: Social ==================== */
-        #slide-5 .content {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-        }
-
         #slide-5 .section-label {
             color: #f59e0b;
         }
 
-        #slide-5 .main-col {
-            display: flex;
-            flex-direction: column;
+        #slide-5 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
         }
 
         #slide-5 .photos-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 18px;
+            margin-bottom: 18px;
         }
 
         #slide-5 .photo-card {
@@ -804,7 +800,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
+            font-size: 64px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s;
@@ -822,133 +818,166 @@
             left: 0;
             right: 0;
             background: rgba(0, 0, 0, 0.9);
-            padding: 12px;
+            padding: 10px;
             font-family: 'Manrope', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: white;
         }
 
-        #slide-5 .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        #slide-5 .sidebar-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 20px;
-            color: var(--dark);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        #slide-5 .moment-card {
+        #slide-5 .fun-element {
             background: white;
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border: var(--border) solid rgba(245, 158, 11, 0.3);
             border-left: 4px solid #f59e0b;
-            padding: 25px;
+            padding: 20px;
+            text-align: center;
             transition: all 0.3s;
         }
 
-        #slide-5 .moment-card:hover {
+        #slide-5 .fun-element:hover {
             border-color: #f59e0b;
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
         }
 
-        #slide-5 .moment-icon {
-            font-size: 36px;
+        #slide-5 .fun-icon {
+            font-size: 48px;
             margin-bottom: 12px;
+        }
+
+        #slide-5 .fun-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        #slide-5 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-5 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        #slide-5 .social-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 18px;
+            transition: all 0.3s;
+        }
+
+        #slide-5 .social-card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+        }
+
+        #slide-5 .social-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
             display: block;
         }
 
-        #slide-5 .moment-title {
-            font-weight: 700;
-            font-size: 15px;
+        #slide-5 .social-title {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
             color: var(--dark);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        #slide-5 .moment-desc {
-            font-size: 13px;
+        #slide-5 .social-desc {
+            font-size: 12px;
             color: rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
         }
 
         /* ==================== SLIDE 6: Interactive ==================== */
-        #slide-6 .content {
+        #slide-6 .section-label {
+            color: var(--secondary);
+        }
+
+        #slide-6 .content-wrapper {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 300px;
             gap: 25px;
         }
 
-        #slide-6 .section-label {
-            color: var(--secondary);
-            grid-column: 1 / -1;
+        #slide-6 .interactive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
         }
 
-        #slide-6 .title {
-            grid-column: 1 / -1;
-        }
-
-        #slide-6 .subtitle {
-            grid-column: 1 / -1;
-        }
-
-        #slide-6 .card {
+        #slide-6 .idea-card {
+            background: white;
+            border: var(--border) solid rgba(67, 97, 238, 0.2);
+            border-left: 4px solid var(--secondary);
+            padding: 25px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s;
         }
 
-        #slide-6 .card:hover {
+        #slide-6 .idea-card:hover {
             border-color: var(--secondary);
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
         }
 
-        #slide-6 .card-header {
+        #slide-6 .idea-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--secondary);
         }
 
-        #slide-6 .card-content {
-            font-size: 15px;
-            line-height: 1.7;
+        #slide-6 .idea-desc {
+            font-size: 13px;
+            line-height: 1.6;
             color: rgba(0, 0, 0, 0.7);
-            margin-bottom: 25px;
-            flex: 1;
+            margin-bottom: 20px;
         }
 
         #slide-6 .qr-box {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             background: var(--secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 42px;
             color: white;
-            margin: 0 auto 18px;
+            margin-bottom: 15px;
         }
 
         #slide-6 .cta-button {
             font-family: 'Manrope', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             background: var(--secondary);
             color: white;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border: none;
             cursor: pointer;
-            width: 100%;
             transition: all 0.3s;
         }
 
@@ -956,66 +985,99 @@
             background: var(--dark);
         }
 
-        #slide-6 .prompt-box {
-            background: rgba(67, 97, 238, 0.1);
+        #slide-6 .prompt-card {
+            background: white;
             border: 3px solid var(--secondary);
-            padding: 30px;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 1.6;
-            color: var(--dark);
-            flex: 1;
+            padding: 25px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-        }
-
-        #slide-6 .events-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        #slide-6 .event {
-            background: rgba(0, 0, 0, 0.05);
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 18px;
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            border-left: 4px solid var(--secondary);
             transition: all 0.3s;
         }
 
-        #slide-6 .event:hover {
+        #slide-6 .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+        }
+
+        #slide-6 .prompt-label {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        #slide-6 .prompt-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--dark);
+        }
+
+        #slide-6 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-6 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        #slide-6 .event-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .event-card:hover {
             border-color: var(--secondary);
-            transform: translateX(-5px);
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
         }
 
         #slide-6 .event-icon {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: var(--secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             flex-shrink: 0;
+            border-radius: 4px;
+        }
+
+        #slide-6 .event-info {
+            flex: 1;
+            min-width: 0;
         }
 
         #slide-6 .event-title {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 13px;
             color: var(--dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         #slide-6 .event-date {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
+            font-size: 11px;
             color: var(--secondary);
         }
 
@@ -1368,52 +1430,59 @@
         <div class="slide" id="slide-5">
             <div class="slide-number">05</div>
             <div class="content">
-                <div class="main-col">
-                    <div class="section-label">// LIFE & SOCIAL</div>
-                    <h1 class="title">GREAT<br>MEMORIES</h1>
-                    <p class="subtitle">Moments that matter</p>
+                <div class="section-label">// LIFE & SOCIAL</div>
+                <h1 class="title">GREAT MEMORIES</h1>
+                <p class="subtitle">Moments that matter</p>
 
-                    <div class="photos-grid">
-                        <div class="photo-card">
-                            🎂
-                            <div class="photo-label">Birthday Celebration</div>
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="photos-grid">
+                            <div class="photo-card">
+                                📸
+                                <div class="photo-label">Team Photo</div>
+                            </div>
+                            <div class="photo-card">
+                                🏃
+                                <div class="photo-label">Team Building</div>
+                            </div>
+                            <div class="photo-card">
+                                ☕
+                                <div class="photo-label">Coffee Break</div>
+                            </div>
+                            <div class="photo-card">
+                                🍕
+                                <div class="photo-label">Team Lunch</div>
+                            </div>
                         </div>
-                        <div class="photo-card">
-                            🏃
-                            <div class="photo-label">Team Building</div>
-                        </div>
-                        <div class="photo-card">
-                            ☕
-                            <div class="photo-label">Coffee Break</div>
-                        </div>
-                        <div class="photo-card">
-                            🍕
-                            <div class="photo-label">Team Lunch</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="sidebar">
-                    <div class="sidebar-title">HIGHLIGHTS</div>
-                    <div class="moment-card">
-                        <span class="moment-icon">🏆</span>
-                        <div class="moment-title">AWARDS NIGHT</div>
-                        <div class="moment-desc">Celebrating our achievements together</div>
+                        <div class="fun-element">
+                            <div class="fun-icon">🎲</div>
+                            <div class="fun-text">Fun Fact: DT team has 12 coffee lovers!</div>
+                        </div>
                     </div>
-                    <div class="moment-card">
-                        <span class="moment-icon">🎉</span>
-                        <div class="moment-title">TEAM OUTING</div>
-                        <div class="moment-desc">Fun times outside the office</div>
-                    </div>
-                    <div class="moment-card">
-                        <span class="moment-icon">🎮</span>
-                        <div class="moment-title">GAME NIGHT</div>
-                        <div class="moment-desc">Weekly gaming sessions</div>
-                    </div>
-                    <div class="moment-card">
-                        <span class="moment-icon">😊</span>
-                        <div class="moment-title">MORE TO COME</div>
-                        <div class="moment-desc">Stay tuned for more fun!</div>
+
+                    <div class="sidebar">
+                        <div class="sidebar-title">SOCIAL BUZZ</div>
+                        <div class="social-card">
+                            <span class="social-icon">🎂</span>
+                            <div class="social-title">BIRTHDAY CELEBRATION</div>
+                            <div class="social-desc">Join us in celebrating this month's birthdays!</div>
+                        </div>
+                        <div class="social-card">
+                            <span class="social-icon">🎉</span>
+                            <div class="social-title">TEAM EVENT</div>
+                            <div class="social-desc">Quarterly team building activity coming up</div>
+                        </div>
+                        <div class="social-card">
+                            <span class="social-icon">📣</span>
+                            <div class="social-title">SHOUT OUT</div>
+                            <div class="social-desc">Amazing work on the release! Keep it up team!</div>
+                        </div>
+                        <div class="social-card">
+                            <span class="social-icon">🏆</span>
+                            <div class="social-title">TEAM AWARDS</div>
+                            <div class="social-desc">Recognizing excellence across all teams</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1424,45 +1493,54 @@
             <div class="slide-number">06</div>
             <div class="content">
                 <div class="section-label">// INTERACTIVE</div>
-                <h1 class="title">YOUR<br>VOICE</h1>
+                <h1 class="title">YOUR VOICE</h1>
                 <p class="subtitle">Shape the future with us</p>
 
-                <div class="card">
-                    <div class="card-header">SHARE IDEA</div>
-                    <div class="card-content">Have an idea or suggestion? We'd love to hear from you!</div>
-                    <div class="qr-box">📱</div>
-                    <button class="cta-button">SCAN & SHARE</button>
-                </div>
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="interactive-grid">
+                            <div class="idea-card">
+                                <div class="idea-title">SHARE YOUR IDEA</div>
+                                <p class="idea-desc">Have a suggestion or feedback? We'd love to hear from you!</p>
+                                <div class="qr-box">📱</div>
+                                <button class="cta-button">SCAN & SUBMIT</button>
+                            </div>
 
-                <div class="card">
-                    <div class="card-header">MONTHLY PROMPT</div>
-                    <div class="prompt-box">
-                        What does "Win Together" mean to you?
+                            <div class="prompt-card">
+                                <div class="prompt-label">PROMPT OF THE MONTH</div>
+                                <div class="prompt-text">What does "Win Together" mean to you?</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">UPCOMING EVENTS</div>
-                    <div class="events-list">
-                        <div class="event">
+                    <div class="sidebar">
+                        <div class="sidebar-title">COMING UP</div>
+                        <div class="event-card">
                             <div class="event-icon">🏢</div>
-                            <div>
+                            <div class="event-info">
                                 <div class="event-title">DT Town Hall</div>
                                 <div class="event-date">JUN 27, 2026</div>
                             </div>
                         </div>
-                        <div class="event">
+                        <div class="event-card">
                             <div class="event-icon">💡</div>
-                            <div>
+                            <div class="event-info">
                                 <div class="event-title">Tech Talk: GenAI</div>
                                 <div class="event-date">JUL 10, 2026</div>
                             </div>
                         </div>
-                        <div class="event">
+                        <div class="event-card">
                             <div class="event-icon">🎉</div>
-                            <div>
+                            <div class="event-info">
                                 <div class="event-title">Team Outing</div>
                                 <div class="event-date">JUL 25, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event-card">
+                            <div class="event-icon">📢</div>
+                            <div class="event-info">
+                                <div class="event-title">Q3 Planning</div>
+                                <div class="event-date">AUG 05, 2026</div>
                             </div>
                         </div>
                     </div>
