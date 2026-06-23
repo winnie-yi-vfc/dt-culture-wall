@@ -200,58 +200,49 @@
             50% { opacity: 0.4; }
         }
 
-        /* ==================== SLIDE 1: Identity ==================== */
+        /* ==================== SLIDE 1: Identity (SAME AS SLIDE 4) ==================== */
         #slide-1 .content {
             display: grid;
-            grid-template-columns: 1fr 650px;
-            gap: 60px;
-            align-items: start;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
         }
 
-        #slide-1 .main-section {
-            padding-top: 40px;
+        #slide-1 .section-label {
+            color: var(--primary);
         }
 
-        #slide-1 .title-card {
-            background: var(--primary);
-            padding: 50px 60px;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-
-        #slide-1 .title-card .title {
-            font-size: 72px;
-            color: white;
-            margin: 0;
+        #slide-1 .mission-card {
+            background: rgba(255, 87, 34, 0.1);
+            border-left: 6px solid var(--primary);
+            padding: 50px;
         }
 
         #slide-1 .mission-text {
-            font-size: 20px;
-            line-height: 1.6;
-            color: rgba(0, 0, 0, 0.7);
-            margin-top: 30px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--dark);
+            margin-bottom: 25px;
         }
 
-        #slide-1 .values-section {
+        #slide-1 .mission-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #slide-1 .values-list {
             display: flex;
             flex-direction: column;
             gap: 20px;
-        }
-
-        #slide-1 .values-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 24px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
         }
 
         #slide-1 .value-item {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
             padding: 30px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
             transition: all 0.3s;
         }
 
@@ -261,15 +252,21 @@
             box-shadow: 5px 5px 0 var(--primary);
         }
 
-        #slide-1 .value-icon {
-            font-size: 48px;
-            flex-shrink: 0;
+        #slide-1 .value-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        #slide-1 .value-text {
+        #slide-1 .value-icon {
+            font-size: 32px;
+        }
+
+        #slide-1 .value-title {
             font-family: 'Manrope', sans-serif;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
             color: var(--dark);
         }
 
@@ -859,38 +856,47 @@
         <div class="slide" id="slide-1">
             <div class="slide-number">01</div>
             <div class="content">
-                <div class="main-section">
-                    <div class="section-label" style="color: var(--primary)">// IDENTITY</div>
-                    <div class="title-card">
-                        <div class="title">DIGITAL<br>TECHNOLOGY</div>
+                <div>
+                    <div class="section-label">// IDENTITY</div>
+                    <h1 class="title">DIGITAL<br>TECHNOLOGY</h1>
+                    <p class="subtitle">Powering VF Digital Innovation in APAC</p>
+
+                    <div class="mission-card">
+                        <p class="mission-text">"We deliver world-class technology solutions that enable our brands to thrive in the digital age."</p>
+                        <p class="mission-author">— DT APAC MISSION</p>
                     </div>
-                    <p class="mission-text">
-                        <strong>Our Mission:</strong> Powering VF Digital Innovation in APAC.
-                        We deliver world-class technology solutions that enable our brands to thrive in the digital age.
-                    </p>
                 </div>
 
-                <div class="values-section">
-                    <div class="values-title">OUR 5 CORE VALUES</div>
+                <div class="values-list">
                     <div class="value-item">
-                        <span class="value-icon">🤝</span>
-                        <div class="value-text">Trust & Integrity</div>
+                        <div class="value-header">
+                            <div class="value-icon">🤝</div>
+                        </div>
+                        <div class="value-title">TRUST & INTEGRITY</div>
                     </div>
                     <div class="value-item">
-                        <span class="value-icon">⭐</span>
-                        <div class="value-text">Customer First</div>
+                        <div class="value-header">
+                            <div class="value-icon">⭐</div>
+                        </div>
+                        <div class="value-title">CUSTOMER FIRST</div>
                     </div>
                     <div class="value-item">
-                        <span class="value-icon">⚡</span>
-                        <div class="value-text">Embrace the Now</div>
+                        <div class="value-header">
+                            <div class="value-icon">⚡</div>
+                        </div>
+                        <div class="value-title">EMBRACE THE NOW</div>
                     </div>
                     <div class="value-item">
-                        <span class="value-icon">🌱</span>
-                        <div class="value-text">Growth Mindset</div>
+                        <div class="value-header">
+                            <div class="value-icon">🌱</div>
+                        </div>
+                        <div class="value-title">GROWTH MINDSET</div>
                     </div>
                     <div class="value-item">
-                        <span class="value-icon">🏆</span>
-                        <div class="value-text">Win Together</div>
+                        <div class="value-header">
+                            <div class="value-icon">🏆</div>
+                        </div>
+                        <div class="value-title">WIN TOGETHER</div>
                     </div>
                 </div>
             </div>
