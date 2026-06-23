@@ -788,127 +788,152 @@
             color: #f59e0b;
         }
 
-        #slide-5 .content-wrapper {
+        #slide-5 .social-grid {
             display: grid;
-            grid-template-columns: 1fr 280px;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
-        #slide-5 .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        #slide-5 .photo-card {
-            aspect-ratio: 2/1;
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
-        }
-
-        #slide-5 .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
-        }
-
-        #slide-5 .photo-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 8px;
-            font-family: 'Manrope', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: white;
-        }
-
-        #slide-5 .fun-element {
+        #slide-5 .social-section {
             background: white;
-            border: var(--border) solid rgba(245, 158, 11, 0.3);
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            text-align: center;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f59e0b;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
             transition: all 0.3s;
         }
 
-        #slide-5 .fun-element:hover {
+        #slide-5 .social-section:hover {
             border-color: #f59e0b;
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
         }
 
-        #slide-5 .fun-icon {
-            font-size: 36px;
-            margin-bottom: 8px;
+        #slide-5 .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(245, 158, 11, 0.2);
         }
 
-        #slide-5 .fun-text {
-            font-family: 'Manrope', sans-serif;
+        #slide-5 .section-icon {
+            font-size: 32px;
+        }
+
+        #slide-5 .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: #f59e0b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #slide-5 .birthday-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #slide-5 .birthday-person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 4px;
+        }
+
+        #slide-5 .birthday-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        #slide-5 .birthday-info {
+            flex: 1;
+        }
+
+        #slide-5 .birthday-name {
+            font-weight: 700;
             font-size: 13px;
-            font-weight: 600;
             color: var(--dark);
+            margin-bottom: 2px;
         }
 
-        #slide-5 .sidebar {
+        #slide-5 .birthday-date {
+            font-size: 11px;
+            color: #f59e0b;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        #slide-5 .event-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        #slide-5 .sidebar-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 14px;
-            color: var(--dark);
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
-
-        #slide-5 .social-card {
-            background: white;
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #f59e0b;
-            padding: 14px;
+        #slide-5 .event-item {
+            padding: 12px;
+            background: rgba(245, 158, 11, 0.05);
+            border-left: 3px solid #f59e0b;
             transition: all 0.3s;
         }
 
-        #slide-5 .social-card:hover {
-            border-color: #f59e0b;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+        #slide-5 .event-item:hover {
+            background: rgba(245, 158, 11, 0.1);
+            transform: translateX(3px);
         }
 
-        #slide-5 .social-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        #slide-5 .social-title {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 800;
-            font-size: 12px;
+        #slide-5 .event-name {
+            font-weight: 700;
+            font-size: 13px;
             color: var(--dark);
             margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        #slide-5 .social-desc {
+        #slide-5 .event-desc {
             font-size: 11px;
             color: rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+        }
+
+        #slide-5 .fun-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #slide-5 .fun-item {
+            padding: 15px;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-5 .fun-item:hover {
+            background: rgba(245, 158, 11, 0.1);
+            transform: scale(1.02);
+        }
+
+        #slide-5 .fun-emoji {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        #slide-5 .fun-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
             line-height: 1.4;
         }
 
@@ -1443,54 +1468,79 @@
                 <h1 class="title">GREAT MEMORIES</h1>
                 <p class="subtitle">Moments that matter</p>
 
-                <div class="content-wrapper">
-                    <div class="main-col">
-                        <div class="photos-grid">
-                            <div class="photo-card">
-                                📸
-                                <div class="photo-label">Team Photo</div>
-                            </div>
-                            <div class="photo-card">
-                                🏃
-                                <div class="photo-label">Team Building</div>
-                            </div>
-                            <div class="photo-card">
-                                ☕
-                                <div class="photo-label">Coffee Break</div>
-                            </div>
-                            <div class="photo-card">
-                                🍕
-                                <div class="photo-label">Team Lunch</div>
-                            </div>
+                <div class="social-grid">
+                    <!-- Birthday Section -->
+                    <div class="social-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎂</div>
+                            <div class="section-title">BIRTHDAY</div>
                         </div>
-
-                        <div class="fun-element">
-                            <div class="fun-icon">🎲</div>
-                            <div class="fun-text">Fun Fact: DT team has 12 coffee lovers!</div>
+                        <div class="birthday-list">
+                            <div class="birthday-person">
+                                <div class="birthday-avatar">🎉</div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Alice Wang</div>
+                                    <div class="birthday-date">JUN 25</div>
+                                </div>
+                            </div>
+                            <div class="birthday-person">
+                                <div class="birthday-avatar">🎈</div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Bob Chen</div>
+                                    <div class="birthday-date">JUN 28</div>
+                                </div>
+                            </div>
+                            <div class="birthday-person">
+                                <div class="birthday-avatar">🎊</div>
+                                <div class="birthday-info">
+                                    <div class="birthday-name">Carol Li</div>
+                                    <div class="birthday-date">JUL 02</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="sidebar">
-                        <div class="sidebar-title">SOCIAL BUZZ</div>
-                        <div class="social-card">
-                            <span class="social-icon">🎂</span>
-                            <div class="social-title">BIRTHDAY CELEBRATION</div>
-                            <div class="social-desc">Join us in celebrating this month's birthdays!</div>
+                    <!-- Event Section -->
+                    <div class="social-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎉</div>
+                            <div class="section-title">EVENT</div>
                         </div>
-                        <div class="social-card">
-                            <span class="social-icon">🎉</span>
-                            <div class="social-title">TEAM EVENT</div>
-                            <div class="social-desc">Quarterly team building activity coming up</div>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-name">Team Building</div>
+                                <div class="event-desc">Outdoor hiking & BBQ this Saturday</div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-name">Team Lunch</div>
+                                <div class="event-desc">Monthly team lunch at Italian restaurant</div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-name">Awards Night</div>
+                                <div class="event-desc">Q2 recognition ceremony next Friday</div>
+                            </div>
                         </div>
-                        <div class="social-card">
-                            <span class="social-icon">📣</span>
-                            <div class="social-title">SHOUT OUT</div>
-                            <div class="social-desc">Amazing work on the release! Keep it up team!</div>
+                    </div>
+
+                    <!-- Fun Section -->
+                    <div class="social-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎲</div>
+                            <div class="section-title">FUN</div>
                         </div>
-                        <div class="social-card">
-                            <span class="social-icon">🏆</span>
-                            <div class="social-title">TEAM AWARDS</div>
-                            <div class="social-desc">Recognizing excellence across all teams</div>
+                        <div class="fun-list">
+                            <div class="fun-item">
+                                <div class="fun-emoji">☕</div>
+                                <div class="fun-text">12 coffee lovers on the team!</div>
+                            </div>
+                            <div class="fun-item">
+                                <div class="fun-emoji">🎮</div>
+                                <div class="fun-text">Weekly game night: 8pm Fridays</div>
+                            </div>
+                            <div class="fun-item">
+                                <div class="fun-emoji">📚</div>
+                                <div class="fun-text">Book club reads 2 books per month</div>
+                            </div>
                         </div>
                     </div>
                 </div>
