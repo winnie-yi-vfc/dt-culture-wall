@@ -70,10 +70,10 @@
             z-index: 0;
         }
 
-        /* Slide number */
+        /* Slide number - UNIFIED */
         .slide-number {
             position: absolute;
-            top: 60px;
+            top: 30px;
             left: 80px;
             font-family: 'Archivo Black', sans-serif;
             font-size: 120px;
@@ -106,19 +106,20 @@
 
         .title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 96px;
+            font-size: 56px;
             line-height: 1;
             font-weight: 900;
-            margin-bottom: 30px;
+            margin-top: 30px;
+            margin-bottom: 15px;
             text-transform: uppercase;
             color: var(--dark);
         }
 
         .subtitle {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 400;
             color: rgba(0, 0, 0, 0.6);
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             letter-spacing: 1px;
         }
 
@@ -291,20 +292,6 @@
         }
 
         /* ==================== SLIDE 2: People ==================== */
-        #slide-2 .slide-number {
-            top: 30px;
-        }
-
-        #slide-2 .title {
-            font-size: 56px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        #slide-2 .subtitle {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
 
         #slide-2 .teams-grid {
             display: grid;
@@ -409,8 +396,8 @@
         /* ==================== SLIDE 3: Recognition ==================== */
         #slide-3 .content {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 50px;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
         }
 
         #slide-3 .main-col {
@@ -421,39 +408,39 @@
         #slide-3 .metrics-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 20px;
         }
 
         #slide-3 .metric-card {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 50px 40px;
+            padding: 35px 30px;
             text-align: center;
             transition: all 0.3s;
         }
 
         #slide-3 .metric-card:hover {
             border-color: var(--primary);
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
         }
 
         #slide-3 .metric-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         #slide-3 .metric-value {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 64px;
+            font-size: 52px;
             color: var(--primary);
             line-height: 1;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         #slide-3 .metric-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: rgba(0, 0, 0, 0.6);
@@ -462,55 +449,55 @@
         #slide-3 .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         #slide-3 .sidebar-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 24px;
+            font-size: 20px;
             color: var(--dark);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         #slide-3 .achievement {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
             border-left: 4px solid var(--primary);
-            padding: 30px;
+            padding: 25px;
             transition: all 0.3s;
         }
 
         #slide-3 .achievement:hover {
             border-color: var(--primary);
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
         }
 
         #slide-3 .achievement-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 12px;
             display: block;
         }
 
         #slide-3 .achievement h4 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         #slide-3 .achievement p {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(0, 0, 0, 0.6);
             line-height: 1.5;
         }
 
-        /* ==================== SLIDE 4: Learning (REFERENCE STYLE) ==================== */
+        /* ==================== SLIDE 4: Learning ==================== */
         #slide-4 .content {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 50px;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
         }
 
         #slide-4 .section-label {
@@ -520,21 +507,21 @@
         #slide-4 .story-card {
             background: rgba(16, 185, 129, 0.1);
             border-left: 6px solid var(--accent-green);
-            padding: 50px;
+            padding: 40px;
         }
 
         #slide-4 .story-quote {
             font-family: 'Manrope', sans-serif;
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 500;
             line-height: 1.5;
             color: var(--dark);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         #slide-4 .story-author {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
+            font-size: 12px;
             color: var(--accent-green);
             font-weight: 600;
         }
@@ -542,20 +529,20 @@
         #slide-4 .academy-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         #slide-4 .academy-item {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 25px;
             transition: all 0.3s;
         }
 
         #slide-4 .academy-item:hover {
             border-color: var(--accent-green);
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
         }
 
         #slide-4 .academy-header {
@@ -584,14 +571,14 @@
 
         #slide-4 .academy-title {
             font-family: 'Manrope', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         #slide-4 .academy-desc {
-            font-size: 15px;
+            font-size: 14px;
             color: rgba(0, 0, 0, 0.6);
             line-height: 1.6;
         }
@@ -599,8 +586,8 @@
         /* ==================== SLIDE 5: Social ==================== */
         #slide-5 .content {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 50px;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
         }
 
         #slide-5 .section-label {
@@ -615,7 +602,7 @@
         #slide-5 .photos-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 20px;
         }
 
         #slide-5 .photo-card {
@@ -624,7 +611,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 96px;
+            font-size: 80px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s;
@@ -632,8 +619,8 @@
         }
 
         #slide-5 .photo-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 #f59e0b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
         }
 
         #slide-5 .photo-label {
@@ -655,46 +642,46 @@
         #slide-5 .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         #slide-5 .sidebar-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 24px;
+            font-size: 20px;
             color: var(--dark);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         #slide-5 .moment-card {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
             border-left: 4px solid #f59e0b;
-            padding: 30px;
+            padding: 25px;
             transition: all 0.3s;
         }
 
         #slide-5 .moment-card:hover {
             border-color: #f59e0b;
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0 #f59e0b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
         }
 
         #slide-5 .moment-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 12px;
             display: block;
         }
 
         #slide-5 .moment-title {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--dark);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         #slide-5 .moment-desc {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(0, 0, 0, 0.6);
         }
 
@@ -702,7 +689,7 @@
         #slide-6 .content {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
+            gap: 25px;
         }
 
         #slide-6 .section-label {
@@ -725,7 +712,8 @@
 
         #slide-6 .card:hover {
             border-color: var(--secondary);
-            box-shadow: 5px 5px 0 var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
         }
 
         #slide-6 .card-header {
