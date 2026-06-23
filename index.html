@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DT Culture Wall - Unified Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF5722;
+            --secondary: #4361ee;
+            --accent-green: #10b981;
+            --accent-cyan: #00ffcc;
+            --dark: #0a0a0a;
+            --dark-bg: #1a1a1a;
+            --light: #ffffff;
+            --light-bg: #f8f9fa;
+            --grid: rgba(0, 0, 0, 0.05);
+            --border: 2px;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            background: var(--light-bg);
+            color: var(--dark);
+        }
+
+        /* Viewport base */
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+        }
+
+        /* Grid background */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Slide number */
+        .slide-number {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 120px;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.04);
+            font-weight: 900;
+            z-index: 1;
+            user-select: none;
+        }
+
+        /* Content wrapper - UNIFIED */
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1600px;
+            padding: 0 80px;
+        }
+
+        /* Typography - UNIFIED */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 96px;
+            line-height: 1;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        /* UNIFIED CARD STYLE */
+        .card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translate(-5px, -5px);
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px 28px;
+            border-radius: 50px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-dot:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            width: 32px;
+            border-radius: 5px;
+            background: var(--accent-green);
+        }
+
+        /* Camera status */
+        .camera-status {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-green);
+            background: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 2px solid var(--accent-green);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ==================== SLIDE 1: Identity ==================== */
+        #slide-1 .content {
+            display: grid;
+            grid-template-columns: 1fr 650px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        #slide-1 .main-section {
+            padding-top: 40px;
+        }
+
+        #slide-1 .title-card {
+            background: var(--primary);
+            padding: 50px 60px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        #slide-1 .title-card .title {
+            font-size: 72px;
+            color: white;
+            margin: 0;
+        }
+
+        #slide-1 .mission-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            margin-top: 30px;
+        }
+
+        #slide-1 .values-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #slide-1 .values-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #slide-1 .value-item {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: all 0.3s;
+        }
+
+        #slide-1 .value-item:hover {
+            border-color: var(--primary);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--primary);
+        }
+
+        #slide-1 .value-icon {
+            font-size: 48px;
+            flex-shrink: 0;
+        }
+
+        #slide-1 .value-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* ==================== SLIDE 2: People ==================== */
+        #slide-2 .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+        }
+
+        #slide-2 .main-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-2 .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        #slide-2 .team-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-2 .team-card:hover {
+            border-color: var(--secondary);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--secondary);
+        }
+
+        #slide-2 .team-photo {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            margin-bottom: 25px;
+        }
+
+        #slide-2 .team-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        #slide-2 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #slide-2 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #slide-2 .new-joiner {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        #slide-2 .new-joiner:hover {
+            border-color: var(--secondary);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--secondary);
+        }
+
+        #slide-2 .joiner-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        #slide-2 .joiner-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        #slide-2 .joiner-role {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* ==================== SLIDE 3: Recognition ==================== */
+        #slide-3 .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+        }
+
+        #slide-3 .main-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-3 .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        #slide-3 .metric-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-3 .metric-card:hover {
+            border-color: var(--primary);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--primary);
+        }
+
+        #slide-3 .metric-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        #slide-3 .metric-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 64px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        #slide-3 .metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        #slide-3 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #slide-3 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #slide-3 .achievement {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        #slide-3 .achievement:hover {
+            border-color: var(--primary);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--primary);
+        }
+
+        #slide-3 .achievement-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #slide-3 .achievement h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        #slide-3 .achievement p {
+            font-size: 15px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.5;
+        }
+
+        /* ==================== SLIDE 4: Learning (REFERENCE STYLE) ==================== */
+        #slide-4 .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+        }
+
+        #slide-4 .section-label {
+            color: var(--accent-green);
+        }
+
+        #slide-4 .story-card {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 6px solid var(--accent-green);
+            padding: 50px;
+        }
+
+        #slide-4 .story-quote {
+            font-family: 'Manrope', sans-serif;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        #slide-4 .story-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        #slide-4 .academy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #slide-4 .academy-item {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        #slide-4 .academy-item:hover {
+            border-color: var(--accent-green);
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--accent-green);
+        }
+
+        #slide-4 .academy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        #slide-4 .academy-icon {
+            font-size: 32px;
+        }
+
+        #slide-4 .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 3px;
+            color: white;
+        }
+
+        #slide-4 .tag-new { background: #a855f7; }
+        #slide-4 .tag-hot { background: #ef4444; }
+
+        #slide-4 .academy-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        #slide-4 .academy-desc {
+            font-size: 15px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.6;
+        }
+
+        /* ==================== SLIDE 5: Social ==================== */
+        #slide-5 .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+        }
+
+        #slide-5 .section-label {
+            color: #f59e0b;
+        }
+
+        #slide-5 .main-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-5 .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        #slide-5 .photo-card {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 96px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+        }
+
+        #slide-5 .photo-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 #f59e0b;
+        }
+
+        #slide-5 .photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        #slide-5 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #slide-5 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        #slide-5 .moment-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        #slide-5 .moment-card:hover {
+            border-color: #f59e0b;
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 #f59e0b;
+        }
+
+        #slide-5 .moment-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #slide-5 .moment-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        #slide-5 .moment-desc {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* ==================== SLIDE 6: Interactive ==================== */
+        #slide-6 .content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        #slide-6 .section-label {
+            color: var(--secondary);
+            grid-column: 1 / -1;
+        }
+
+        #slide-6 .title {
+            grid-column: 1 / -1;
+        }
+
+        #slide-6 .subtitle {
+            grid-column: 1 / -1;
+        }
+
+        #slide-6 .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-6 .card:hover {
+            border-color: var(--secondary);
+            box-shadow: 5px 5px 0 var(--secondary);
+        }
+
+        #slide-6 .card-header {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+
+        #slide-6 .card-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+            flex: 1;
+        }
+
+        #slide-6 .qr-box {
+            width: 140px;
+            height: 140px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        #slide-6 .cta-button {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .cta-button:hover {
+            background: var(--dark);
+        }
+
+        #slide-6 .prompt-box {
+            background: rgba(67, 97, 238, 0.1);
+            border: 3px solid var(--secondary);
+            padding: 35px;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--dark);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #slide-6 .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-6 .event {
+            background: rgba(0, 0, 0, 0.05);
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+
+        #slide-6 .event:hover {
+            border-color: var(--secondary);
+            transform: translate(-5px, 0);
+            box-shadow: 5px 0 0 var(--secondary);
+        }
+
+        #slide-6 .event-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        #slide-6 .event-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        #slide-6 .event-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--secondary);
+        }
+
+        /* Like Animation */
+        .like-animation {
+            position: fixed;
+            font-size: 80px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: like-float 1.5s ease-out forwards;
+        }
+
+        @keyframes like-float {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.2) rotate(15deg); opacity: 0; }
+        }
+
+        #webcam {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Camera Status -->
+    <div class="camera-status">
+        <div class="status-indicator"></div>
+        <span id="status-text">GESTURE_ENABLED</span>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slide-container" id="slides">
+
+        <!-- SLIDE 1: Identity -->
+        <div class="slide" id="slide-1">
+            <div class="slide-number">01</div>
+            <div class="content">
+                <div class="main-section">
+                    <div class="section-label" style="color: var(--primary)">// IDENTITY</div>
+                    <div class="title-card">
+                        <div class="title">DIGITAL<br>TECHNOLOGY</div>
+                    </div>
+                    <p class="mission-text">
+                        <strong>Our Mission:</strong> Powering VF Digital Innovation in APAC.
+                        We deliver world-class technology solutions that enable our brands to thrive in the digital age.
+                    </p>
+                </div>
+
+                <div class="values-section">
+                    <div class="values-title">OUR 5 CORE VALUES</div>
+                    <div class="value-item">
+                        <span class="value-icon">🤝</span>
+                        <div class="value-text">Trust & Integrity</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">⭐</span>
+                        <div class="value-text">Customer First</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">⚡</span>
+                        <div class="value-text">Embrace the Now</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🌱</span>
+                        <div class="value-text">Growth Mindset</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🏆</span>
+                        <div class="value-text">Win Together</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: People -->
+        <div class="slide" id="slide-2">
+            <div class="slide-number">02</div>
+            <div class="content">
+                <div class="main-col">
+                    <div class="section-label" style="color: var(--secondary)">// OUR PEOPLE</div>
+                    <h1 class="title">GREAT<br>TOGETHER</h1>
+                    <p class="subtitle">Building the future as one team</p>
+
+                    <div class="teams-grid">
+                        <div class="team-card">
+                            <div class="team-photo">👥</div>
+                            <div class="team-name">PLATFORM</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-photo">👥</div>
+                            <div class="team-name">FRONTEND</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-photo">👥</div>
+                            <div class="team-name">BACKEND</div>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-photo">👥</div>
+                            <div class="team-name">DEVOPS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-title">NEW JOINERS</div>
+                    <div class="new-joiner">
+                        <div class="joiner-photo">👨‍💻</div>
+                        <div class="joiner-info">
+                            <div class="joiner-name">Tony Tao</div>
+                            <div class="joiner-role">Backend Engineer</div>
+                        </div>
+                    </div>
+                    <div class="new-joiner">
+                        <div class="joiner-photo">👩‍💼</div>
+                        <div class="joiner-info">
+                            <div class="joiner-name">Sissi Zhao</div>
+                            <div class="joiner-role">Product Manager</div>
+                        </div>
+                    </div>
+                    <div class="new-joiner">
+                        <div class="joiner-photo">👨‍💻</div>
+                        <div class="joiner-info">
+                            <div class="joiner-name">Ryan Jiang</div>
+                            <div class="joiner-role">Data Engineer</div>
+                        </div>
+                    </div>
+                    <div class="new-joiner">
+                        <div class="joiner-photo">👩‍💻</div>
+                        <div class="joiner-info">
+                            <div class="joiner-name">Lisa Wang</div>
+                            <div class="joiner-role">Frontend Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Recognition -->
+        <div class="slide" id="slide-3">
+            <div class="slide-number">03</div>
+            <div class="content">
+                <div class="main-col">
+                    <div class="section-label" style="color: var(--primary)">// RECOGNITION</div>
+                    <h1 class="title">CELEBRATING<br>EXCELLENCE</h1>
+                    <p class="subtitle">Impact that matters</p>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⏱️</div>
+                            <div class="metric-value">99.98%</div>
+                            <div class="metric-label">System Uptime</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🚀</div>
+                            <div class="metric-value">1,250+</div>
+                            <div class="metric-label">Deployments</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🎫</div>
+                            <div class="metric-value">8,600+</div>
+                            <div class="metric-label">Tickets Closed</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">👥</div>
+                            <div class="metric-value">45</div>
+                            <div class="metric-label">Team Members</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-title">KEY WINS</div>
+                    <div class="achievement">
+                        <span class="achievement-icon">🚀</span>
+                        <h4>OMS 2.0 GO-LIVE</h4>
+                        <p>Successfully launched in 5 countries</p>
+                    </div>
+                    <div class="achievement">
+                        <span class="achievement-icon">👨‍💻</span>
+                        <h4>EMPLOYEE OF MONTH</h4>
+                        <p>Jacky Chen - Engineering Excellence</p>
+                    </div>
+                    <div class="achievement">
+                        <span class="achievement-icon">📊</span>
+                        <h4>PLATFORM UPGRADE</h4>
+                        <p>40% performance improvement</p>
+                    </div>
+                    <div class="achievement">
+                        <span class="achievement-icon">🎖️</span>
+                        <h4>LONG SERVICE AWARD</h4>
+                        <p>Grace Li - 5 Years with DT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Learning (REFERENCE DESIGN) -->
+        <div class="slide" id="slide-4">
+            <div class="slide-number">04</div>
+            <div class="content">
+                <div>
+                    <div class="section-label">// LEARNING & GROWTH</div>
+                    <h1 class="title">CONTINUOUS<br>GROWTH</h1>
+                    <p class="subtitle">Never stop learning</p>
+
+                    <div class="story-card">
+                        <p class="story-quote">"Growth happens when we step out of our comfort zone and support each other along the way."</p>
+                        <p class="story-author">— ECHO WANG, PRODUCT</p>
+                    </div>
+                </div>
+
+                <div class="academy-list">
+                    <div class="academy-item">
+                        <div class="academy-header">
+                            <div class="academy-icon">🤖</div>
+                            <div class="tag tag-new">NEW</div>
+                        </div>
+                        <div class="academy-title">AI FOR EVERYONE</div>
+                        <div class="academy-desc">Understand AI basics and apply to your work</div>
+                    </div>
+                    <div class="academy-item">
+                        <div class="academy-header">
+                            <div class="academy-icon">🔄</div>
+                            <div class="tag tag-hot">HOT</div>
+                        </div>
+                        <div class="academy-title">AGILE MINDSET</div>
+                        <div class="academy-desc">Work smarter, deliver faster</div>
+                    </div>
+                    <div class="academy-item">
+                        <div class="academy-header">
+                            <div class="academy-icon">🌱</div>
+                        </div>
+                        <div class="academy-title">GROWTH PATH</div>
+                        <div class="academy-desc">Career development workshops</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Social -->
+        <div class="slide" id="slide-5">
+            <div class="slide-number">05</div>
+            <div class="content">
+                <div class="main-col">
+                    <div class="section-label">// LIFE & SOCIAL</div>
+                    <h1 class="title">GREAT<br>MEMORIES</h1>
+                    <p class="subtitle">Moments that matter</p>
+
+                    <div class="photos-grid">
+                        <div class="photo-card">
+                            🎂
+                            <div class="photo-label">Birthday Celebration</div>
+                        </div>
+                        <div class="photo-card">
+                            🏃
+                            <div class="photo-label">Team Building</div>
+                        </div>
+                        <div class="photo-card">
+                            ☕
+                            <div class="photo-label">Coffee Break</div>
+                        </div>
+                        <div class="photo-card">
+                            🍕
+                            <div class="photo-label">Team Lunch</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-title">HIGHLIGHTS</div>
+                    <div class="moment-card">
+                        <span class="moment-icon">🏆</span>
+                        <div class="moment-title">AWARDS NIGHT</div>
+                        <div class="moment-desc">Celebrating our achievements together</div>
+                    </div>
+                    <div class="moment-card">
+                        <span class="moment-icon">🎉</span>
+                        <div class="moment-title">TEAM OUTING</div>
+                        <div class="moment-desc">Fun times outside the office</div>
+                    </div>
+                    <div class="moment-card">
+                        <span class="moment-icon">🎮</span>
+                        <div class="moment-title">GAME NIGHT</div>
+                        <div class="moment-desc">Weekly gaming sessions</div>
+                    </div>
+                    <div class="moment-card">
+                        <span class="moment-icon">😊</span>
+                        <div class="moment-title">MORE TO COME</div>
+                        <div class="moment-desc">Stay tuned for more fun!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Interactive -->
+        <div class="slide" id="slide-6">
+            <div class="slide-number">06</div>
+            <div class="content">
+                <div class="section-label">// INTERACTIVE</div>
+                <h1 class="title">YOUR<br>VOICE</h1>
+                <p class="subtitle">Shape the future with us</p>
+
+                <div class="card">
+                    <div class="card-header">SHARE IDEA</div>
+                    <div class="card-content">Have an idea or suggestion? We'd love to hear from you!</div>
+                    <div class="qr-box">📱</div>
+                    <button class="cta-button">SCAN & SHARE</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">MONTHLY PROMPT</div>
+                    <div class="prompt-box">
+                        What does "Win Together" mean to you?
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">UPCOMING EVENTS</div>
+                    <div class="events-list">
+                        <div class="event">
+                            <div class="event-icon">🏢</div>
+                            <div>
+                                <div class="event-title">DT Town Hall</div>
+                                <div class="event-date">JUN 27, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="event-icon">💡</div>
+                            <div>
+                                <div class="event-title">Tech Talk: GenAI</div>
+                                <div class="event-date">JUL 10, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="event-icon">🎉</div>
+                            <div>
+                                <div class="event-title">Team Outing</div>
+                                <div class="event-date">JUL 25, 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hidden webcam -->
+    <video id="webcam" autoplay playsinline></video>
+
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+        let autoPlayInterval;
+        const autoPlayDuration = 10000;
+
+        init();
+
+        function init() {
+            setupGestureRecognition();
+            startAutoPlay();
+            setupKeyboardControls();
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+            document.getElementById('slides').style.transform = `translateX(-${currentSlide * 100}vw)`;
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            resetAutoPlay();
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+
+        function prevSlide() {
+            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, autoPlayDuration);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        function setupKeyboardControls() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
+            });
+        }
+
+        function setupGestureRecognition() {
+            const video = document.getElementById('webcam');
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    video.srcObject = stream;
+                    initializeMediaPipe(video);
+                })
+                .catch(() => {
+                    document.getElementById('status-text').textContent = 'CAMERA_DISABLED';
+                });
+        }
+
+        function initializeMediaPipe(video) {
+            const hands = new Hands({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+            });
+            hands.setOptions({
+                maxNumHands: 1,
+                modelComplexity: 1,
+                minDetectionConfidence: 0.7,
+                minTrackingConfidence: 0.5
+            });
+            hands.onResults(onHandsResults);
+            const camera = new Camera(video, {
+                onFrame: async () => { await hands.send({ image: video }); },
+                width: 640,
+                height: 480
+            });
+            camera.start();
+        }
+
+        let lastGestureTime = 0;
+        let lastLikeTime = 0;
+        let handStartX = null;
+
+        function onHandsResults(results) {
+            if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) return;
+            const landmarks = results.multiHandLandmarks[0];
+            if (isThumbsUp(landmarks)) triggerLikeAnimation();
+            const swipe = detectSwipe(landmarks);
+            const now = Date.now();
+            if (swipe && now - lastGestureTime > 1000) {
+                if (swipe === 'left') prevSlide();
+                if (swipe === 'right') nextSlide();
+                lastGestureTime = now;
+            }
+        }
+
+        function isThumbsUp(landmarks) {
+            const thumbUp = landmarks[4].y < landmarks[3].y;
+            const fingersFolded = landmarks[8].y > landmarks[6].y && landmarks[12].y > landmarks[10].y;
+            const now = Date.now();
+            if (thumbUp && fingersFolded && now - lastLikeTime > 2000) {
+                lastLikeTime = now;
+                return true;
+            }
+            return false;
+        }
+
+        function detectSwipe(landmarks) {
+            const handCenterX = landmarks[9].x;
+            if (handStartX === null) {
+                handStartX = handCenterX;
+                return null;
+            }
+            const deltaX = handCenterX - handStartX;
+            if (Math.abs(deltaX) > 0.3) {
+                const direction = deltaX > 0 ? 'right' : 'left';
+                handStartX = null;
+                return direction;
+            }
+            return null;
+        }
+
+        function triggerLikeAnimation() {
+            const like = document.createElement('div');
+            like.className = 'like-animation';
+            const emojis = ['👍', '❤️', '🎉', '⭐', '🔥', '💯'];
+            like.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            like.style.left = Math.random() * window.innerWidth + 'px';
+            like.style.top = window.innerHeight / 2 + 'px';
+            like.style.color = ['#FF5722', '#10b981', '#4361ee'][Math.floor(Math.random() * 3)];
+            document.body.appendChild(like);
+            setTimeout(() => like.remove(), 1500);
+        }
+    </script>
+</body>
+</html>
