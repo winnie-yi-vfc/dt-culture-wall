@@ -394,6 +394,12 @@
         }
 
         /* ==================== SLIDE 3: Recognition ==================== */
+        #slide-3 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+        }
+
         #slide-3 .metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -432,38 +438,38 @@
         }
 
         #slide-3 .recognition-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         #slide-3 .recognition-block {
             background: white;
             border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 25px;
+            padding: 20px;
         }
 
         #slide-3 .recognition-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--primary);
             text-transform: uppercase;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 3px solid var(--primary);
         }
 
         #slide-3 .person-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
         }
 
         #slide-3 .person-card {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px;
+            gap: 10px;
+            padding: 10px;
             background: rgba(0, 0, 0, 0.02);
             border-left: 3px solid var(--primary);
             transition: all 0.3s;
@@ -475,14 +481,14 @@
         }
 
         #slide-3 .person-avatar {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), #ff8a65);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             flex-shrink: 0;
         }
 
@@ -492,27 +498,27 @@
 
         #slide-3 .person-name {
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--dark);
             margin-bottom: 2px;
         }
 
         #slide-3 .person-role {
-            font-size: 11px;
+            font-size: 10px;
             color: rgba(0, 0, 0, 0.6);
         }
 
         #slide-3 .award-grid {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         #slide-3 .award-person {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
+            gap: 12px;
+            padding: 12px;
             background: rgba(0, 0, 0, 0.02);
             border-left: 3px solid var(--primary);
             transition: all 0.3s;
@@ -524,14 +530,14 @@
         }
 
         #slide-3 .award-avatar {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             flex-shrink: 0;
         }
 
@@ -541,15 +547,65 @@
 
         #slide-3 .award-name {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         #slide-3 .award-years {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--primary);
             font-weight: 600;
+        }
+
+        #slide-3 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-3 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        #slide-3 .achievement {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 18px;
+            transition: all 0.3s;
+        }
+
+        #slide-3 .achievement:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
+        }
+
+        #slide-3 .achievement-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #slide-3 .achievement h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        #slide-3 .achievement p {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
         }
 
         /* ==================== SLIDE 4: Learning ==================== */
@@ -1035,77 +1091,105 @@
                 <h1 class="title">CELEBRATING<br>EXCELLENCE</h1>
                 <p class="subtitle">Impact that matters</p>
 
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value">99.98%</div>
-                        <div class="metric-label">System Uptime</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">1,250+</div>
-                        <div class="metric-label">Deployments</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">8,600+</div>
-                        <div class="metric-label">Tickets Closed</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">45</div>
-                        <div class="metric-label">Team Members</div>
-                    </div>
-                </div>
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">99.98%</div>
+                                <div class="metric-label">System Uptime</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">1,250+</div>
+                                <div class="metric-label">Deployments</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">8,600+</div>
+                                <div class="metric-label">Tickets Closed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">45</div>
+                                <div class="metric-label">Team Members</div>
+                            </div>
+                        </div>
 
-                <div class="recognition-section">
-                    <div class="recognition-block">
-                        <div class="recognition-title">Star / Spotlight of the Month</div>
-                        <div class="person-grid">
-                            <div class="person-card">
-                                <div class="person-avatar">🌟</div>
-                                <div class="person-info">
-                                    <div class="person-name">Jacky Chen</div>
-                                    <div class="person-role">Engineering Excellence</div>
+                        <div class="recognition-section">
+                            <div class="recognition-block">
+                                <div class="recognition-title">Star / Spotlight of the Month</div>
+                                <div class="person-grid">
+                                    <div class="person-card">
+                                        <div class="person-avatar">🌟</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Jacky Chen</div>
+                                            <div class="person-role">Engineering Excellence</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">💫</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Emma Wu</div>
+                                            <div class="person-role">Innovation Leader</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">⭐</div>
+                                        <div class="person-info">
+                                            <div class="person-name">David Zhang</div>
+                                            <div class="person-role">Customer Champion</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">✨</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Lisa Wang</div>
+                                            <div class="person-role">Team Enabler</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="person-card">
-                                <div class="person-avatar">💫</div>
-                                <div class="person-info">
-                                    <div class="person-name">Emma Wu</div>
-                                    <div class="person-role">Innovation Leader</div>
-                                </div>
-                            </div>
-                            <div class="person-card">
-                                <div class="person-avatar">⭐</div>
-                                <div class="person-info">
-                                    <div class="person-name">David Zhang</div>
-                                    <div class="person-role">Customer Champion</div>
-                                </div>
-                            </div>
-                            <div class="person-card">
-                                <div class="person-avatar">✨</div>
-                                <div class="person-info">
-                                    <div class="person-name">Lisa Wang</div>
-                                    <div class="person-role">Team Enabler</div>
+
+                            <div class="recognition-block">
+                                <div class="recognition-title">Long Service Award</div>
+                                <div class="award-grid">
+                                    <div class="award-person">
+                                        <div class="award-avatar">🏆</div>
+                                        <div class="award-info">
+                                            <div class="award-name">Grace Li</div>
+                                            <div class="award-years">5 Years with DT</div>
+                                        </div>
+                                    </div>
+                                    <div class="award-person">
+                                        <div class="award-avatar">🎖️</div>
+                                        <div class="award-info">
+                                            <div class="award-name">Michael Chen</div>
+                                            <div class="award-years">3 Years with DT</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="recognition-block">
-                        <div class="recognition-title">Long Service Award</div>
-                        <div class="award-grid">
-                            <div class="award-person">
-                                <div class="award-avatar">🏆</div>
-                                <div class="award-info">
-                                    <div class="award-name">Grace Li</div>
-                                    <div class="award-years">5 Years with DT</div>
-                                </div>
-                            </div>
-                            <div class="award-person">
-                                <div class="award-avatar">🎖️</div>
-                                <div class="award-info">
-                                    <div class="award-name">Michael Chen</div>
-                                    <div class="award-years">3 Years with DT</div>
-                                </div>
-                            </div>
+                    <div class="sidebar">
+                        <div class="sidebar-title">TEAM WINS</div>
+                        <div class="achievement">
+                            <span class="achievement-icon">🚀</span>
+                            <h4>OMS 2.0 GO-LIVE</h4>
+                            <p>Successfully launched in 5 countries</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">📊</span>
+                            <h4>PLATFORM UPGRADE</h4>
+                            <p>40% performance improvement</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">🔒</span>
+                            <h4>SECURITY AUDIT</h4>
+                            <p>100% compliance achieved</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">⚡</span>
+                            <h4>API OPTIMIZATION</h4>
+                            <p>Response time reduced 60%</p>
                         </div>
                     </div>
                 </div>
