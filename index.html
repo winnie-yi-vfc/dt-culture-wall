@@ -408,33 +408,54 @@
         }
 
         #slide-3 .metric-card {
-            background: white;
-            border: var(--border) solid rgba(0, 0, 0, 0.1);
-            padding: 20px 15px;
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.05), rgba(255, 87, 34, 0.02));
+            border: 3px solid rgba(255, 87, 34, 0.2);
+            padding: 35px 20px;
             text-align: center;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #slide-3 .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #ff8a65);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        #slide-3 .metric-card:hover::before {
+            transform: scaleX(1);
         }
 
         #slide-3 .metric-card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(255, 87, 34, 0.25);
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.08), rgba(255, 87, 34, 0.03));
         }
 
         #slide-3 .metric-value {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 36px;
+            font-size: 48px;
             color: var(--primary);
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-weight: 900;
         }
 
         #slide-3 .metric-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 600;
         }
 
         #slide-3 .recognition-section {
@@ -580,7 +601,7 @@
             font-size: 16px;
             color: var(--dark);
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 0;
         }
 
         #slide-3 .achievement {
@@ -1099,7 +1120,7 @@
             <div class="slide-number">03</div>
             <div class="content">
                 <div class="section-label" style="color: var(--primary)">// RECOGNITION</div>
-                <h1 class="title">CELEBRATING<br>EXCELLENCE</h1>
+                <h1 class="title">CELEBRATING EXCELLENCE</h1>
                 <p class="subtitle">Impact that matters</p>
 
                 <div class="content-wrapper">
