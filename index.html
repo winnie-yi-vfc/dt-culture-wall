@@ -1666,13 +1666,10 @@
     <script>
         let currentSlide = 0;
         const totalSlides = 6;
-        let autoPlayInterval;
-        const autoPlayDuration = 10000;
 
         init();
 
         function init() {
-            startAutoPlay();
             setupKeyboardControls();
         }
 
@@ -1683,7 +1680,6 @@
             document.querySelectorAll('.nav-dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
             });
-            resetAutoPlay();
         }
 
         function nextSlide() {
@@ -1692,15 +1688,6 @@
 
         function prevSlide() {
             goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-        }
-
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(nextSlide, autoPlayDuration);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
         }
 
         function setupKeyboardControls() {
