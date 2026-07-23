@@ -3,61 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VF DT APAC — Our People (Direction B)</title>
+    <title>DT Culture Wall - Unified Design</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
-            --bg: #F7F6F2;
-            --text: #1A1A1A;
-            --text-gray: #666;
-            --text-muted: #999;
-            --card-bg: #FFFFFF;
-            --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            --divider: #E0DDD8;
-            --photo-bg: #E8E5E0;
-            --team-a: #4A9EFF;
-            --team-b: #FF6B9D;
-            --team-c: #34D399;
-            --team-d: #FFB547;
-            --team-e: #A78BFA;
-            --team-f: #F87171;
+            --primary: #FF5722;
+            --secondary: #4361ee;
+            --accent-green: #10b981;
+            --accent-cyan: #00ffcc;
+            --dark: #0a0a0a;
+            --dark-bg: #1a1a1a;
+            --light: #ffffff;
+            --light-bg: #f8f9fa;
+            --grid: rgba(0, 0, 0, 0.05);
+            --border: 2px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            width: 100vw;
-            height: 100vh;
+            font-family: 'Space Grotesk', sans-serif;
             overflow: hidden;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--light-bg);
+            color: var(--dark);
         }
 
-        /* ---- Stage ---- */
-        .stage {
-            position: relative;
+        /* Viewport base */
+        .slide-container {
             width: 100vw;
             height: 100vh;
-            background: var(--bg);
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .slide {
+            min-width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+            padding: 5vh 5vw;
+            box-sizing: border-box;
+        }
+
+        /* Grid background */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Slide number - UNIFIED */
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 120px;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.04);
+            font-weight: 900;
+            z-index: 1;
+            user-select: none;
+        }
+
+        /* Content wrapper - UNIFIED with Safe Area */
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1600px;
+            padding: 0 80px;
+        }
+
+        /* Typography - UNIFIED */
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 56px;
+            line-height: 1;
+            font-weight: 900;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* UNIFIED CARD STYLE */
+        .card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translate(-5px, -5px);
+        }
+
+        /* Navigation */
+        .nav-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px 28px;
+            border-radius: 50px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-dot:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            width: 32px;
+            border-radius: 5px;
+            background: var(--accent-green);
+        }
+
+
+        /* ==================== SLIDE 1: Identity (SAME AS SLIDE 4) ==================== */
+        #slide-1 .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 50px;
+            align-items: center;
+        }
+
+        #slide-1 .section-label {
+            color: var(--primary);
+        }
+
+        #slide-1 .mission-card {
+            background: rgba(255, 87, 34, 0.1);
+            border-left: 6px solid var(--primary);
+            padding: 50px;
+        }
+
+        #slide-1 .mission-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        #slide-1 .mission-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #slide-1 .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        #slide-1 .value-item {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #slide-1 .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        #slide-1 .value-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        #slide-1 .value-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.2);
+        }
+
+        #slide-1 .value-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        #slide-1 .value-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        /* ==================== SLIDE 2: People (Direction B warm light) ==================== */
+        #slide-2 {
+            background: #F7F6F2;
+            align-items: stretch;
+            padding: 0;
+        }
+        #slide-2::before { display: none; }
+        #slide-2 .slide-number { z-index: 10; }
+        #slide-2 .ppl-stage {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: #F7F6F2;
+        }
+        #slide-2 .ppl-sub {
             position: absolute;
             inset: 0;
             opacity: 0;
             transition: opacity 600ms ease-in-out;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
         }
-        .slide.active {
+        #slide-2 .ppl-sub.active {
             opacity: 1;
             pointer-events: auto;
         }
-
-        /* ---- Shared Typography ---- */
-        .section-label {
+        #slide-2 .ppl-label {
             font-family: 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 500;
@@ -66,83 +298,67 @@
             letter-spacing: 3px;
             font-variant-caps: all-small-caps;
         }
-
-        .heading {
+        #slide-2 .ppl-h {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.5px;
-            color: var(--text);
+            color: #1A1A1A;
         }
-
-        .divider {
+        #slide-2 .ppl-divider {
             height: 1px;
-            background: var(--divider);
+            background: #E0DDD8;
             border: none;
             margin: 0;
         }
-
-        /* ---- Progress Bar ---- */
-        .progress-bar {
+        #slide-2 .ppl-progress {
             position: absolute;
             bottom: 0;
             left: 0;
             height: 3px;
-            background: var(--text);
+            background: #1A1A1A;
             z-index: 100;
             width: 0%;
         }
-        .progress-bar.animating {
-            animation: progress-fill var(--duration) linear forwards;
+        #slide-2 .ppl-progress.go {
+            animation: ppl-prog var(--dur) linear forwards;
         }
-        @keyframes progress-fill {
-            from { width: 0%; }
-            to   { width: 100%; }
-        }
+        @keyframes ppl-prog { from { width: 0%; } to { width: 100%; } }
 
-        /* ======================================================
-           SLIDE 1 — Overview
-           ====================================================== */
-        #slide-1 {
-            display: flex;
-            flex-direction: column;
+        /* Sub 1: Overview */
+        #slide-2 .ppl-s1 {
             padding: 5vh 5vw 0;
         }
-
-        .s1-header {
+        #slide-2 .ppl-s1-hdr {
             flex: 0 0 auto;
             padding-top: 2vh;
         }
-        .s1-header .section-label {
-            margin-bottom: 8px;
-        }
-        .s1-header .heading {
+        #slide-2 .ppl-s1-hdr .ppl-label { margin-bottom: 8px; }
+        #slide-2 .ppl-s1-hdr .ppl-h {
             font-size: clamp(42px, 6vw, 72px);
             line-height: 1.05;
             margin-bottom: 10px;
             opacity: 0;
             transform: translateY(24px);
         }
-        .s1-header .heading.visible {
-            animation: slideUpFade 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        #slide-2 .ppl-s1-hdr .ppl-h.in {
+            animation: ppl-up 0.7s cubic-bezier(0.22,0.61,0.36,1) forwards;
         }
-        .s1-subhead {
+        #slide-2 .ppl-s1-sub {
             font-size: 17px;
             font-weight: 400;
             color: #777;
+            font-family: 'Inter', sans-serif;
             opacity: 0;
             transform: translateY(12px);
             margin-bottom: 16px;
         }
-        .s1-subhead.visible {
-            animation: slideUpFade 0.7s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        #slide-2 .ppl-s1-sub.in {
+            animation: ppl-up 0.7s 0.25s cubic-bezier(0.22,0.61,0.36,1) forwards;
         }
+        @keyframes ppl-up { to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideUpFade {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .s1-grid {
+        #slide-2 .ppl-s1-grid {
             flex: 1;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -151,11 +367,10 @@
             padding: 2vh 0 3vh;
             align-content: center;
         }
-
-        .s1-card {
-            background: var(--card-bg);
+        #slide-2 .ppl-s1-card {
+            background: #fff;
             border-radius: 12px;
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -163,105 +378,91 @@
             transform: scale(0.92);
             position: relative;
         }
-        .s1-card.visible {
-            animation: cardPopIn 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        #slide-2 .ppl-s1-card.in {
+            animation: ppl-pop 0.55s cubic-bezier(0.22,0.61,0.36,1) forwards;
         }
-        @keyframes cardPopIn {
-            to { opacity: 1; transform: scale(1); }
+        @keyframes ppl-pop { to { opacity: 1; transform: scale(1); } }
+        #slide-2 .ppl-s1-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--ta);
+            border-radius: 12px 0 0 12px;
+            z-index: 2;
         }
-
-        .s1-card-photo {
+        #slide-2 .ppl-s1-photo {
             flex: 1;
-            background: var(--photo-bg);
+            background: #E8E5E0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
-        .s1-card-photo .camera-icon {
+        #slide-2 .ppl-s1-photo .ppl-cam {
             font-size: 44px;
             opacity: 0.4;
             margin-bottom: 8px;
         }
-        .s1-card-photo .photo-label {
+        #slide-2 .ppl-s1-photo .ppl-phl {
             font-size: 13px;
             font-weight: 500;
             color: #aaa;
+            font-family: 'Inter', sans-serif;
         }
-
-        .s1-card-bottom {
+        #slide-2 .ppl-s1-bot {
             flex: 0 0 auto;
             padding: 14px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--card-bg);
-            position: relative;
+            background: #fff;
         }
-        .s1-card-bottom .team-name {
+        #slide-2 .ppl-s1-bot .ppl-tname {
             font-size: 15px;
             font-weight: 700;
+            font-family: 'Inter', sans-serif;
         }
-        .s1-card-bottom .member-count {
+        #slide-2 .ppl-s1-bot .ppl-mcnt {
             font-size: 12px;
             font-weight: 600;
             color: #999;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Team accent borders */
-        .s1-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--team-accent);
-            border-radius: 12px 0 0 12px;
-            z-index: 2;
-        }
-
-        /* ======================================================
-           SLIDE 2 — Team A
-           ====================================================== */
-        #slide-2 {
-            display: flex;
-            flex-direction: column;
+        /* Sub 2: Team A */
+        #slide-2 .ppl-s2 {
             padding: 4vh 4vw 3vh;
         }
-
-        .s2-top-area {
+        #slide-2 .ppl-s2-top {
             flex-shrink: 0;
             margin-bottom: 2vh;
         }
-        .s2-top-area .section-label {
-            margin-bottom: 6px;
-        }
-        .s2-top-row {
+        #slide-2 .ppl-s2-top .ppl-label { margin-bottom: 6px; }
+        #slide-2 .ppl-s2-row {
             display: flex;
             align-items: center;
             gap: 18px;
             margin-top: 6px;
             margin-bottom: 14px;
         }
-        .s2-top-row .heading {
+        #slide-2 .ppl-s2-row .ppl-h {
             font-size: clamp(36px, 5.5vw, 64px);
             line-height: 1;
         }
-        .s2-pill {
+        #slide-2 .ppl-s2-pill {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--team-a);
+            background: #4A9EFF;
             border-radius: 20px;
             padding: 6px 16px;
             font-size: 13px;
             font-weight: 600;
             color: #fff;
+            font-family: 'Inter', sans-serif;
         }
-
-        .s2-grid {
+        #slide-2 .ppl-s2-grid {
             flex: 1;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -269,11 +470,10 @@
             gap: 12px;
             align-content: center;
         }
-
-        .s2-member {
-            background: var(--card-bg);
+        #slide-2 .ppl-s2-m {
+            background: #fff;
             border-radius: 12px;
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             padding: 14px 12px;
             display: flex;
             align-items: center;
@@ -283,26 +483,20 @@
             position: relative;
             overflow: hidden;
         }
-        .s2-member::before {
+        #slide-2 .ppl-s2-m::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
+            left: 0; top: 0; bottom: 0;
             width: 3px;
-            background: var(--team-a);
+            background: #4A9EFF;
             border-radius: 12px 0 0 12px;
         }
-        .s2-member.visible {
-            animation: memberSlideUp 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        #slide-2 .ppl-s2-m.in {
+            animation: ppl-mup 0.45s cubic-bezier(0.22,0.61,0.36,1) forwards;
         }
-        @keyframes memberSlideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .s2-avatar {
-            width: 42px;
-            height: 42px;
+        @keyframes ppl-mup { to { opacity: 1; transform: translateY(0); } }
+        #slide-2 .ppl-s2-av {
+            width: 42px; height: 42px;
             border-radius: 50%;
             flex-shrink: 0;
             display: flex;
@@ -311,211 +505,1484 @@
             font-size: 14px;
             font-weight: 700;
             color: #fff;
-            background: var(--team-a);
+            background: #4A9EFF;
             letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
         }
-
-        .s2-info {
+        #slide-2 .ppl-s2-info {
             min-width: 0;
         }
-        .s2-info .name {
+        #slide-2 .ppl-s2-info .ppl-mname {
             font-size: 13px;
             font-weight: 600;
-            color: var(--text);
+            color: #1A1A1A;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            font-family: 'Inter', sans-serif;
         }
-        .s2-info .title {
+        #slide-2 .ppl-s2-info .ppl-mtitle {
             font-size: 11px;
             font-weight: 400;
-            color: var(--text-gray);
+            color: #666;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             margin-top: 2px;
+            font-family: 'Inter', sans-serif;
         }
-
-        .s2-badge-new {
+        #slide-2 .ppl-s2-badge {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 8px; right: 8px;
+            font-family: 'Inter', sans-serif;
             font-size: 9px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #fff;
-            background: var(--team-a);
+            background: #4A9EFF;
             border-radius: 4px;
             padding: 2px 7px;
+        }
+
+        /* ==================== SLIDE 3: Recognition ==================== */
+        #slide-3 .section-label {
+            color: var(--primary);
+        }
+
+        #slide-3 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            margin-top: 0;
+        }
+
+        #slide-3 .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        #slide-3 .metric-card {
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.05), rgba(255, 87, 34, 0.02));
+            border: 3px solid rgba(255, 87, 34, 0.2);
+            padding: 35px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #slide-3 .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #ff8a65);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        #slide-3 .metric-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        #slide-3 .metric-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(255, 87, 34, 0.25);
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.08), rgba(255, 87, 34, 0.03));
+        }
+
+        #slide-3 .metric-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 48px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 12px;
+            font-weight: 900;
+        }
+
+        #slide-3 .metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 600;
+        }
+
+        #slide-3 .recognition-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        #slide-3 .recognition-block {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        #slide-3 .recognition-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        #slide-3 .person-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        #slide-3 .person-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.02);
+            border-left: 2px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        #slide-3 .person-card:hover {
+            background: rgba(255, 87, 34, 0.05);
+            transform: translateX(3px);
+        }
+
+        #slide-3 .person-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #ff8a65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        #slide-3 .person-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #slide-3 .person-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--dark);
+            margin-bottom: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #slide-3 .person-role {
+            font-size: 10px;
+            color: rgba(0, 0, 0, 0.6);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #slide-3 .award-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        #slide-3 .award-person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.02);
+            border-left: 2px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        #slide-3 .award-person:hover {
+            background: rgba(255, 87, 34, 0.05);
+            transform: translateX(3px);
+        }
+
+        #slide-3 .award-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        #slide-3 .award-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #slide-3 .award-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--dark);
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #slide-3 .award-years {
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #slide-3 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-3 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        #slide-3 .achievement {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 18px;
+            transition: all 0.3s;
+        }
+
+        #slide-3 .achievement:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
+        }
+
+        #slide-3 .achievement-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #slide-3 .achievement h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        #slide-3 .achievement p {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+        }
+
+        /* ==================== SLIDE 4: Learning ==================== */
+        #slide-4 .section-label {
+            color: var(--accent-green);
+        }
+
+        #slide-4 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            margin-top: 0;
+        }
+
+        #slide-4 .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        #slide-4 .story-card {
+            background: white;
+            border: var(--border) solid rgba(16, 185, 129, 0.15);
+            border-left: 4px solid var(--accent-green);
+            padding: 22px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-4 .story-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+        }
+
+        #slide-4 .story-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        #slide-4 .story-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-green), #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        #slide-4 .story-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 13px;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        #slide-4 .story-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            flex: 1;
+        }
+
+        #slide-4 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #slide-4 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        #slide-4 .academy-item {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 18px;
+            transition: all 0.3s;
+        }
+
+        #slide-4 .academy-item:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+        }
+
+        #slide-4 .academy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #slide-4 .academy-icon {
+            font-size: 28px;
+        }
+
+        #slide-4 .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: white;
+        }
+
+        #slide-4 .tag-new { background: #a855f7; }
+        #slide-4 .tag-hot { background: #ef4444; }
+
+        #slide-4 .academy-title {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #slide-4 .academy-desc {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+        }
+
+        /* ==================== SLIDE 5: Social ==================== */
+        #slide-5 .section-label {
+            color: #f59e0b;
+        }
+
+        #slide-5 .title {
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        #slide-5 .subtitle {
+            margin-bottom: 25px;
+        }
+
+        #slide-5 .content-wrapper {
+            display: grid;
+            grid-template-columns: 820px 1fr;
+            gap: 20px;
+            margin-top: 0;
+            align-items: start;
+        }
+
+        #slide-5 .event-section {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f59e0b;
+            padding: 15px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-5 .event-section:hover {
+            border-color: #f59e0b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+        }
+
+        #slide-5 .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        #slide-5 .section-icon {
+            font-size: 24px;
+        }
+
+        #slide-5 .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 14px;
+            color: #f59e0b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #slide-5 .event-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        #slide-5 .event-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #slide-5 .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+            border-color: #f59e0b;
+        }
+
+        #slide-5 .event-photo {
+            width: 100%;
+            aspect-ratio: 2/1;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #slide-5 .event-name {
+            padding: 10px 12px;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--dark);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: white;
+        }
+
+        #slide-5 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        #slide-5 .birthday-section {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f59e0b;
+            padding: 15px;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        #slide-5 .fun-section {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #f59e0b;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+
+        #slide-5 .birthday-section:hover,
+        #slide-5 .fun-section:hover {
+            border-color: #f59e0b;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+        }
+
+        #slide-5 .birthday-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        #slide-5 .birthday-person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 4px;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        #slide-5 .birthday-person:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+        }
+
+        #slide-5 .birthday-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        #slide-5 .birthday-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        #slide-5 .birthday-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--dark);
+        }
+
+        #slide-5 .birthday-date {
+            font-size: 10px;
+            color: #f59e0b;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+
+        #slide-5 .fun-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #slide-5 .fun-item {
+            padding: 10px;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-5 .fun-item:hover {
+            background: rgba(245, 158, 11, 0.1);
+            transform: scale(1.02);
+        }
+
+        #slide-5 .fun-emoji {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        #slide-5 .fun-text {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+
+        /* ==================== SLIDE 6: Interactive ==================== */
+        #slide-6 .section-label {
+            color: var(--secondary);
+        }
+
+        #slide-6 .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            margin-top: 0;
+        }
+
+        #slide-6 .interactive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        #slide-6 .idea-card {
+            background: white;
+            border: var(--border) solid rgba(67, 97, 238, 0.2);
+            border-left: 4px solid var(--secondary);
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .idea-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+        }
+
+        #slide-6 .idea-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            color: var(--secondary);
+            letter-spacing: 0.5px;
+        }
+
+        #slide-6 .idea-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 25px;
+        }
+
+        #slide-6 .qr-box {
+            width: 120px;
+            height: 120px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            color: white;
+            margin-bottom: 18px;
+        }
+
+        #slide-6 .cta-button {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--secondary);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .cta-button:hover {
+            background: var(--dark);
+        }
+
+        #slide-6 .prompt-card {
+            background: white;
+            border: 3px solid var(--secondary);
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+        }
+
+        #slide-6 .prompt-label {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 18px;
+            letter-spacing: 1.5px;
+        }
+
+        #slide-6 .prompt-text {
+            font-family: 'Manrope', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--dark);
+        }
+
+        #slide-6 .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #slide-6 .sidebar-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 14px;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        #slide-6 .event-card {
+            background: white;
+            border: var(--border) solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        #slide-6 .event-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
+        }
+
+        #slide-6 .event-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            flex-shrink: 0;
+            border-radius: 4px;
+        }
+
+        #slide-6 .event-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        #slide-6 .event-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        #slide-6 .event-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--secondary);
+        }
+
+        /* Like Animation */
+        .like-animation {
+            position: fixed;
+            font-size: 80px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: like-float 1.5s ease-out forwards;
+        }
+
+        @keyframes like-float {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-150px) scale(1.2) rotate(15deg); opacity: 0; }
+        }
+
+        #webcam {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
         }
     </style>
 </head>
 <body>
-    <div class="stage">
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+    </div>
 
-        <!-- ============ SLIDE 1 ============ -->
-        <div class="slide active" id="slide-1">
-            <div class="s1-header">
-                <div class="section-label">02 // OUR PEOPLE</div>
-                <h1 class="heading" id="s1-heading">GREAT TOGETHER</h1>
-                <p class="s1-subhead" id="s1-subhead">Building the future as one team</p>
-                <hr class="divider">
+    <!-- Slides Container -->
+    <div class="slide-container" id="slides">
+
+        <!-- SLIDE 1: Identity -->
+        <div class="slide" id="slide-1">
+            <div class="slide-number">01</div>
+            <div class="content">
+                <div>
+                    <div class="section-label">// IDENTITY</div>
+                    <h1 class="title">DIGITAL<br>TECHNOLOGY</h1>
+                    <p class="subtitle">Powering VF Digital Innovation in APAC</p>
+
+                    <div class="mission-card">
+                        <p class="mission-text">"We deliver world-class technology solutions that enable our brands to thrive in the digital age."</p>
+                        <p class="mission-author">— DT APAC MISSION</p>
+                    </div>
+                </div>
+
+                <div class="values-grid">
+                    <div class="value-item">
+                        <span class="value-icon">🤝</span>
+                        <div class="value-title">Trust &<br>Integrity</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">⭐</span>
+                        <div class="value-title">Customer<br>First</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">⚡</span>
+                        <div class="value-title">Embrace<br>the Now</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🌱</span>
+                        <div class="value-title">Growth<br>Mindset</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">🏆</span>
+                        <div class="value-title">Win<br>Together</div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-icon">💡</span>
+                        <div class="value-title">Innovation<br>Driven</div>
+                    </div>
+                </div>
             </div>
-            <div class="s1-grid" id="s1-grid">
-                <div class="s1-card" data-delay="0" style="--team-accent:var(--team-a)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team A</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-a)">Team A</span><span class="member-count">20 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="1" style="--team-accent:var(--team-b)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team B</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-b)">Team B</span><span class="member-count">30 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="2" style="--team-accent:var(--team-c)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team C</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-c)">Team C</span><span class="member-count">6 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="3" style="--team-accent:var(--team-d)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team D</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-d)">Team D</span><span class="member-count">12 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="4" style="--team-accent:var(--team-e)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team E</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-e)">Team E</span><span class="member-count">10 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="5" style="--team-accent:var(--team-f)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team F</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-f)">Team F</span><span class="member-count">8 Members</span></div>
-                </div>
-            </div>
-            <div class="progress-bar" id="pb-1"></div>
         </div>
 
-        <!-- ============ SLIDE 2 ============ -->
+        <!-- SLIDE 2: People (Direction B - 2 sub-slides auto-loop) -->
         <div class="slide" id="slide-2">
-            <div class="s2-top-area">
-                <div class="section-label">02 // OUR PEOPLE</div>
-                <div class="s2-top-row">
-                    <h1 class="heading">TEAM A</h1>
-                    <div class="s2-pill">20 Members</div>
+            <div class="slide-number">02</div>
+            <div class="ppl-stage" id="ppl-stage">
+                <!-- Sub-slide 1: Overview -->
+                <div class="ppl-sub ppl-s1 active" id="ppl-sub1">
+                    <div class="ppl-s1-hdr">
+                        <div class="ppl-label">02 // OUR PEOPLE</div>
+                        <h1 class="ppl-h" id="ppl-s1-h">GREAT TOGETHER</h1>
+                        <p class="ppl-s1-sub" id="ppl-s1-sub">Building the future as one team</p>
+                        <hr class="ppl-divider">
+                    </div>
+                    <div class="ppl-s1-grid" id="ppl-s1-grid">
+                        <div class="ppl-s1-card" data-delay="0" style="--ta:#4A9EFF">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team A</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#4A9EFF">Team A</span><span class="ppl-mcnt">20 Members</span></div>
+                        </div>
+                        <div class="ppl-s1-card" data-delay="1" style="--ta:#FF6B9D">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team B</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#FF6B9D">Team B</span><span class="ppl-mcnt">30 Members</span></div>
+                        </div>
+                        <div class="ppl-s1-card" data-delay="2" style="--ta:#34D399">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team C</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#34D399">Team C</span><span class="ppl-mcnt">6 Members</span></div>
+                        </div>
+                        <div class="ppl-s1-card" data-delay="3" style="--ta:#FFB547">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team D</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#FFB547">Team D</span><span class="ppl-mcnt">12 Members</span></div>
+                        </div>
+                        <div class="ppl-s1-card" data-delay="4" style="--ta:#A78BFA">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team E</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#A78BFA">Team E</span><span class="ppl-mcnt">10 Members</span></div>
+                        </div>
+                        <div class="ppl-s1-card" data-delay="5" style="--ta:#F87171">
+                            <div class="ppl-s1-photo"><div class="ppl-cam">📷</div><div class="ppl-phl">Team F</div></div>
+                            <div class="ppl-s1-bot"><span class="ppl-tname" style="color:#F87171">Team F</span><span class="ppl-mcnt">8 Members</span></div>
+                        </div>
+                    </div>
+                    <div class="ppl-progress" id="ppl-pb1"></div>
                 </div>
-                <hr class="divider">
+                <!-- Sub-slide 2: Team A -->
+                <div class="ppl-sub ppl-s2" id="ppl-sub2">
+                    <div class="ppl-s2-top">
+                        <div class="ppl-label">02 // OUR PEOPLE</div>
+                        <div class="ppl-s2-row">
+                            <h1 class="ppl-h">TEAM A</h1>
+                            <div class="ppl-s2-pill">20 Members</div>
+                        </div>
+                        <hr class="ppl-divider">
+                    </div>
+                    <div class="ppl-s2-grid" id="ppl-s2-grid"></div>
+                    <div class="ppl-progress" id="ppl-pb2"></div>
+                </div>
             </div>
-            <div class="s2-grid" id="s2-grid"></div>
-            <div class="progress-bar" id="pb-2"></div>
+        </div>
+
+        <!-- SLIDE 3: Recognition -->
+        <div class="slide" id="slide-3">
+            <div class="slide-number">03</div>
+            <div class="content">
+                <div class="section-label">// RECOGNITION</div>
+                <h1 class="title">CELEBRATING EXCELLENCE</h1>
+                <p class="subtitle">Impact that matters</p>
+
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">99.98%</div>
+                                <div class="metric-label">System Uptime</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">1,250+</div>
+                                <div class="metric-label">Deployments</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">8,600+</div>
+                                <div class="metric-label">Tickets Closed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">45</div>
+                                <div class="metric-label">Team Members</div>
+                            </div>
+                        </div>
+
+                        <div class="recognition-section">
+                            <div class="recognition-block">
+                                <div class="recognition-title">Star / Spotlight of the Month</div>
+                                <div class="person-grid">
+                                    <div class="person-card">
+                                        <div class="person-avatar">🌟</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Jacky Chen</div>
+                                            <div class="person-role">Engineering Excellence</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">💫</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Emma Wu</div>
+                                            <div class="person-role">Innovation Leader</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">⭐</div>
+                                        <div class="person-info">
+                                            <div class="person-name">David Zhang</div>
+                                            <div class="person-role">Customer Champion</div>
+                                        </div>
+                                    </div>
+                                    <div class="person-card">
+                                        <div class="person-avatar">✨</div>
+                                        <div class="person-info">
+                                            <div class="person-name">Lisa Wang</div>
+                                            <div class="person-role">Team Enabler</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recognition-block">
+                                <div class="recognition-title">Long Service Award</div>
+                                <div class="award-grid">
+                                    <div class="award-person">
+                                        <div class="award-avatar">🏆</div>
+                                        <div class="award-info">
+                                            <div class="award-name">Grace Li</div>
+                                            <div class="award-years">5 Years with DT</div>
+                                        </div>
+                                    </div>
+                                    <div class="award-person">
+                                        <div class="award-avatar">🎖️</div>
+                                        <div class="award-info">
+                                            <div class="award-name">Michael Chen</div>
+                                            <div class="award-years">3 Years with DT</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <div class="sidebar-title">TEAM WINS</div>
+                        <div class="achievement">
+                            <span class="achievement-icon">🚀</span>
+                            <h4>OMS 2.0 GO-LIVE</h4>
+                            <p>Successfully launched in 5 countries</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">📊</span>
+                            <h4>PLATFORM UPGRADE</h4>
+                            <p>40% performance improvement</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">🔒</span>
+                            <h4>SECURITY AUDIT</h4>
+                            <p>100% compliance achieved</p>
+                        </div>
+                        <div class="achievement">
+                            <span class="achievement-icon">⚡</span>
+                            <h4>API OPTIMIZATION</h4>
+                            <p>Response time reduced 60%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Learning -->
+        <div class="slide" id="slide-4">
+            <div class="slide-number">04</div>
+            <div class="content">
+                <div class="section-label">// LEARNING & GROWTH</div>
+                <h1 class="title">CONTINUOUS GROWTH</h1>
+                <p class="subtitle">Learning stories from our core values</p>
+
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="stories-grid">
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🤝</div>
+                                    <div class="story-value">Trust &<br>Integrity</div>
+                                </div>
+                                <p class="story-text">"Being transparent about challenges helped us deliver on time. When I admitted I needed help, the team rallied together."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">⭐</div>
+                                    <div class="story-value">Customer<br>First</div>
+                                </div>
+                                <p class="story-text">"We redesigned the checkout flow after user feedback. Listening to customers reduced cart abandonment by 30%."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">⚡</div>
+                                    <div class="story-value">Embrace<br>the Now</div>
+                                </div>
+                                <p class="story-text">"Instead of waiting for the perfect solution, we shipped an MVP and iterated. Speed matters more than perfection."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🌱</div>
+                                    <div class="story-value">Growth<br>Mindset</div>
+                                </div>
+                                <p class="story-text">"Learning Kubernetes was challenging, but our team study group made it possible. We all grew together."</p>
+                            </div>
+
+                            <div class="story-card">
+                                <div class="story-header">
+                                    <div class="story-icon">🏆</div>
+                                    <div class="story-value">Win<br>Together</div>
+                                </div>
+                                <p class="story-text">"Cross-team collaboration on the API gateway project showed what we can achieve when we work as one."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <div class="sidebar-title">VF ACADEMY</div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🤖</div>
+                                <div class="tag tag-new">NEW</div>
+                            </div>
+                            <div class="academy-title">AI FOR EVERYONE</div>
+                            <div class="academy-desc">Understand AI basics and apply to your work</div>
+                        </div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🔄</div>
+                                <div class="tag tag-hot">HOT</div>
+                            </div>
+                            <div class="academy-title">AGILE MINDSET</div>
+                            <div class="academy-desc">Work smarter, deliver faster</div>
+                        </div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">🌱</div>
+                            </div>
+                            <div class="academy-title">GROWTH PATH</div>
+                            <div class="academy-desc">Career development workshops</div>
+                        </div>
+                        <div class="academy-item">
+                            <div class="academy-header">
+                                <div class="academy-icon">💻</div>
+                            </div>
+                            <div class="academy-title">TECH TALKS</div>
+                            <div class="academy-desc">Monthly sessions on latest tech trends</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Social -->
+        <div class="slide" id="slide-5">
+            <div class="slide-number">05</div>
+            <div class="content">
+                <div class="section-label">// LIFE & SOCIAL</div>
+                <h1 class="title">GREAT MEMORIES</h1>
+                <p class="subtitle">Moments that matter</p>
+
+                <div class="content-wrapper">
+                    <!-- Event Section (Left - Main) -->
+                    <div class="event-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎉</div>
+                            <div class="section-title">EVENT</div>
+                        </div>
+                        <div class="event-grid">
+                            <div class="event-card">
+                                <div class="event-photo"></div>
+                                <div class="event-name">Team Building</div>
+                            </div>
+                            <div class="event-card">
+                                <div class="event-photo"></div>
+                                <div class="event-name">Team Lunch</div>
+                            </div>
+                            <div class="event-card">
+                                <div class="event-photo"></div>
+                                <div class="event-name">Awards Night</div>
+                            </div>
+                            <div class="event-card">
+                                <div class="event-photo"></div>
+                                <div class="event-name">Coffee Break</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar (Right - Birthday + Fun) -->
+                    <div class="sidebar">
+                        <!-- Birthday Section -->
+                        <div class="birthday-section">
+                            <div class="section-header">
+                                <div class="section-icon">🎂</div>
+                                <div class="section-title">BIRTHDAY</div>
+                            </div>
+                            <div class="birthday-list">
+                                <div class="birthday-person">
+                                    <div class="birthday-avatar">🎉</div>
+                                    <div class="birthday-info">
+                                        <div class="birthday-name">Alice Wang</div>
+                                        <div class="birthday-date">JUN 25</div>
+                                    </div>
+                                </div>
+                                <div class="birthday-person">
+                                    <div class="birthday-avatar">🎈</div>
+                                    <div class="birthday-info">
+                                        <div class="birthday-name">Bob Chen</div>
+                                        <div class="birthday-date">JUN 28</div>
+                                    </div>
+                                </div>
+                                <div class="birthday-person">
+                                    <div class="birthday-avatar">🎊</div>
+                                    <div class="birthday-info">
+                                        <div class="birthday-name">Carol Li</div>
+                                        <div class="birthday-date">JUL 02</div>
+                                    </div>
+                                </div>
+                                <div class="birthday-person">
+                                    <div class="birthday-avatar">🎁</div>
+                                    <div class="birthday-info">
+                                        <div class="birthday-name">David Zhang</div>
+                                        <div class="birthday-date">JUL 05</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fun Section -->
+                        <div class="fun-section">
+                            <div class="section-header">
+                                <div class="section-icon">🎲</div>
+                                <div class="section-title">FUN</div>
+                            </div>
+                            <div class="fun-list">
+                                <div class="fun-item">
+                                    <div class="fun-emoji">☕</div>
+                                    <div class="fun-text">12 coffee lovers on the team!</div>
+                                </div>
+                                <div class="fun-item">
+                                    <div class="fun-emoji">🎮</div>
+                                    <div class="fun-text">Weekly game night: 8pm Fridays</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Interactive -->
+        <div class="slide" id="slide-6">
+            <div class="slide-number">06</div>
+            <div class="content">
+                <div class="section-label">// INTERACTIVE</div>
+                <h1 class="title">YOUR VOICE</h1>
+                <p class="subtitle">Shape the future with us</p>
+
+                <div class="content-wrapper">
+                    <div class="main-col">
+                        <div class="interactive-grid">
+                            <div class="idea-card">
+                                <div class="idea-title">SHARE YOUR IDEA</div>
+                                <p class="idea-desc">Have a suggestion or feedback? We'd love to hear from you!</p>
+                                <div class="qr-box">📱</div>
+                                <button class="cta-button">SCAN & SUBMIT</button>
+                            </div>
+
+                            <div class="prompt-card">
+                                <div class="prompt-label">PROMPT OF THE MONTH</div>
+                                <div class="prompt-text">What does "Win Together" mean to you?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <div class="sidebar-title">COMING UP</div>
+                        <div class="event-card">
+                            <div class="event-icon">🏢</div>
+                            <div class="event-info">
+                                <div class="event-title">DT Town Hall</div>
+                                <div class="event-date">JUN 27, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event-card">
+                            <div class="event-icon">💡</div>
+                            <div class="event-info">
+                                <div class="event-title">Tech Talk: GenAI</div>
+                                <div class="event-date">JUL 10, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event-card">
+                            <div class="event-icon">🎉</div>
+                            <div class="event-info">
+                                <div class="event-title">Team Outing</div>
+                                <div class="event-date">JUL 25, 2026</div>
+                            </div>
+                        </div>
+                        <div class="event-card">
+                            <div class="event-icon">📢</div>
+                            <div class="event-info">
+                                <div class="event-title">Q3 Planning</div>
+                                <div class="event-date">AUG 05, 2026</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
+    <!-- Hidden webcam -->
+    <video id="webcam" autoplay playsinline></video>
+
     <script>
-    // ========== DATA ==========
-    const MEMBER_NAMES = [
-        'Alex Chen', 'Sam Lee', 'Jordan Wu', 'Chris Park', 'Taylor Kim',
-        'Morgan Liu', 'Casey Zhang', 'Riley Huang', 'Drew Wang', 'Jamie Xu',
-        'Avery Lin', 'Quinn Zhao', 'Blake Ng', 'River Sun', 'Skyler Ma',
-        'Harper Zhou', 'Indigo Chan', 'Phoenix Lim', 'Sage Wu', 'Cedar Tang'
-    ];
+        let currentSlide = 0;
+        const totalSlides = 6;
 
-    const MEMBER_TITLES = [
-        'Senior Engineer', 'Frontend Dev', 'Backend Dev', 'QA Lead', 'Tech Lead',
-        'Product Manager', 'DevOps Engineer', 'Data Analyst', 'Scrum Master', 'UX Designer'
-    ];
+        init();
 
-    function getInitials(name) {
-        return name.split(' ').map(n => n[0]).join('').toUpperCase();
-    }
+        function init() {
+            setupKeyboardControls();
+            buildPplSlide2();
+            pplActivate(1);
+        }
 
-    function getTitle(i) {
-        return MEMBER_TITLES[i % MEMBER_TITLES.length];
-    }
-
-    // ========== SLIDE 2: Build member grid ==========
-    function buildSlide2() {
-        const grid = document.getElementById('s2-grid');
-        grid.innerHTML = '';
-        MEMBER_NAMES.forEach((name, i) => {
-            const card = document.createElement('div');
-            card.className = 's2-member';
-            card.dataset.delay = i;
-
-            let badgeHTML = '';
-            if (i === 0) badgeHTML = '<div class="s2-badge-new">NEW</div>';
-
-            card.innerHTML = `
-                <div class="s2-avatar">${getInitials(name)}</div>
-                <div class="s2-info">
-                    <div class="name">${name}</div>
-                    <div class="title">${getTitle(i)}</div>
-                </div>
-                ${badgeHTML}
-            `;
-            grid.appendChild(card);
-        });
-    }
-
-    // ========== ANIMATION ENGINE ==========
-    const slide1 = document.getElementById('slide-1');
-    const slide2 = document.getElementById('slide-2');
-    const pb1 = document.getElementById('pb-1');
-    const pb2 = document.getElementById('pb-2');
-
-    const DURATION_S1 = 6000;
-    const DURATION_S2 = 7000;
-
-    let currentSlide = 1;
-    let cycleTimer = null;
-    let s1Animated = false;
-
-    function activateSlide(num) {
-        currentSlide = num;
-        slide1.classList.toggle('active', num === 1);
-        slide2.classList.toggle('active', num === 2);
-
-        const pb = num === 1 ? pb1 : pb2;
-        const duration = num === 1 ? DURATION_S1 : DURATION_S2;
-
-        pb.classList.remove('animating');
-        pb.style.width = '0%';
-        void pb.offsetWidth;
-        pb.style.setProperty('--duration', duration + 'ms');
-        pb.classList.add('animating');
-
-        if (num === 1) {
-            if (!s1Animated) {
-                s1Animated = true;
-                requestAnimationFrame(() => {
-                    document.getElementById('s1-heading').classList.add('visible');
-                    document.getElementById('s1-subhead').classList.add('visible');
-                    document.querySelectorAll('#s1-grid .s1-card').forEach(card => {
-                        const d = parseInt(card.dataset.delay) || 0;
-                        card.style.animationDelay = (0.4 + d * 0.1) + 's';
-                        card.classList.add('visible');
-                    });
-                });
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+            document.getElementById('slides').style.transform = `translateX(-${currentSlide * 100}vw)`;
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            // Reset & restart sub-slides when entering slide 2
+            if (index === 1) {
+                pplReset();
+                pplActivate(1);
+            } else {
+                pplStop();
             }
         }
 
-        if (num === 2) {
-            const members = document.querySelectorAll('#s2-grid .s2-member');
-            members.forEach(m => m.classList.remove('visible'));
-            requestAnimationFrame(() => {
-                members.forEach(m => {
-                    const d = parseInt(m.dataset.delay) || 0;
-                    m.style.animationDelay = (0.2 + d * 0.05) + 's';
-                    m.classList.add('visible');
-                });
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+
+        function prevSlide() {
+            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+        }
+
+        function setupKeyboardControls() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight') nextSlide();
             });
         }
 
-        if (cycleTimer) clearTimeout(cycleTimer);
-        cycleTimer = setTimeout(() => {
-            activateSlide(num === 1 ? 2 : 1);
-        }, duration);
-    }
+        // ========== PEOPLE SUB-SLIDE ENGINE ==========
+        const PPL_NAMES = [
+            'Alex Chen', 'Sam Lee', 'Jordan Wu', 'Chris Park', 'Taylor Kim',
+            'Morgan Liu', 'Casey Zhang', 'Riley Huang', 'Drew Wang', 'Jamie Xu',
+            'Avery Lin', 'Quinn Zhao', 'Blake Ng', 'River Sun', 'Skyler Ma',
+            'Harper Zhou', 'Indigo Chan', 'Phoenix Lim', 'Sage Wu', 'Cedar Tang'
+        ];
+        const PPL_TITLES = [
+            'Senior Engineer', 'Frontend Dev', 'Backend Dev', 'QA Lead', 'Tech Lead',
+            'Product Manager', 'DevOps Engineer', 'Data Analyst', 'Scrum Master', 'UX Designer'
+        ];
 
-    // ========== INIT ==========
-    buildSlide2();
-    activateSlide(1);
+        const PPL_DUR_S1 = 6000;
+        const PPL_DUR_S2 = 7000;
+
+        let pplCurrent = 1;
+        let pplTimer = null;
+        let pplS1Done = false;
+
+        function buildPplSlide2() {
+            const grid = document.getElementById('ppl-s2-grid');
+            grid.innerHTML = '';
+            PPL_NAMES.forEach((name, i) => {
+                const card = document.createElement('div');
+                card.className = 'ppl-s2-m';
+                card.dataset.delay = i;
+                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+                const title = PPL_TITLES[i % PPL_TITLES.length];
+                let badge = i === 0 ? '<div class="ppl-s2-badge">NEW</div>' : '';
+                card.innerHTML = `<div class="ppl-s2-av">${initials}</div><div class="ppl-s2-info"><div class="ppl-mname">${name}</div><div class="ppl-mtitle">${title}</div></div>${badge}`;
+                grid.appendChild(card);
+            });
+        }
+
+        function pplActivate(num) {
+            pplCurrent = num;
+            const sub1 = document.getElementById('ppl-sub1');
+            const sub2 = document.getElementById('ppl-sub2');
+            sub1.classList.toggle('active', num === 1);
+            sub2.classList.toggle('active', num === 2);
+
+            const pb = num === 1 ? document.getElementById('ppl-pb1') : document.getElementById('ppl-pb2');
+            const dur = num === 1 ? PPL_DUR_S1 : PPL_DUR_S2;
+            pb.classList.remove('go');
+            pb.style.width = '0%';
+            void pb.offsetWidth;
+            pb.style.setProperty('--dur', dur + 'ms');
+            pb.classList.add('go');
+
+            if (num === 1 && !pplS1Done) {
+                pplS1Done = true;
+                requestAnimationFrame(() => {
+                    document.getElementById('ppl-s1-h').classList.add('in');
+                    document.getElementById('ppl-s1-sub').classList.add('in');
+                    document.querySelectorAll('#ppl-s1-grid .ppl-s1-card').forEach(card => {
+                        const d = parseInt(card.dataset.delay) || 0;
+                        card.style.animationDelay = (0.4 + d * 0.1) + 's';
+                        card.classList.add('in');
+                    });
+                });
+            }
+            if (num === 2) {
+                const ms = document.querySelectorAll('#ppl-s2-grid .ppl-s2-m');
+                ms.forEach(m => m.classList.remove('in'));
+                requestAnimationFrame(() => {
+                    ms.forEach(m => {
+                        const d = parseInt(m.dataset.delay) || 0;
+                        m.style.animationDelay = (0.2 + d * 0.05) + 's';
+                        m.classList.add('in');
+                    });
+                });
+            }
+
+            if (pplTimer) clearTimeout(pplTimer);
+            pplTimer = setTimeout(() => {
+                pplActivate(num === 1 ? 2 : 1);
+            }, dur);
+        }
+
+        function pplReset() {
+            if (pplTimer) clearTimeout(pplTimer);
+            pplCurrent = 1;
+            const sub1 = document.getElementById('ppl-sub1');
+            const sub2 = document.getElementById('ppl-sub2');
+            sub1.classList.add('active');
+            sub2.classList.remove('active');
+            document.getElementById('ppl-pb1').classList.remove('go');
+            document.getElementById('ppl-pb1').style.width = '0%';
+            document.getElementById('ppl-pb2').classList.remove('go');
+            document.getElementById('ppl-pb2').style.width = '0%';
+            // re-trigger s1 animations if needed
+            if (pplS1Done) {
+                document.querySelectorAll('#ppl-s1-grid .ppl-s1-card').forEach(c => c.classList.remove('in'));
+                document.getElementById('ppl-s1-h').classList.remove('in');
+                document.getElementById('ppl-s1-sub').classList.remove('in');
+                pplS1Done = false;
+            }
+        }
+
+        function pplStop() {
+            if (pplTimer) clearTimeout(pplTimer);
+            pplTimer = null;
+            document.getElementById('ppl-pb1').classList.remove('go');
+            document.getElementById('ppl-pb2').classList.remove('go');
+        }
     </script>
 </body>
 </html>
