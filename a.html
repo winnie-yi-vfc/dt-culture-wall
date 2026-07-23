@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VF DT APAC — Our People</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #0D1B2A;
+        }
+
+        /* ---- Slide Container ---- */
+        .stage {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0D1B2A 0%, #1A0533 100%);
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 600ms ease-in-out;
+            pointer-events: none;
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ---- Shared Typography ---- */
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .heading {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #4A9EFF 0%, #00D4AA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ---- Progress Bar ---- */
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4A9EFF, #00D4AA);
+            z-index: 100;
+            width: 0%;
+        }
+        .progress-bar.animating {
+            animation: progress-fill var(--duration) linear forwards;
+        }
+        @keyframes progress-fill {
+            from { width: 0%; }
+            to   { width: 100%; }
+        }
+
+        /* ======================================================
+           SLIDE 1 — Section Overview with Team Photos
+           ====================================================== */
+        #slide-1 {
+            display: flex;
+            flex-direction: column;
+            padding: 5vh 5vw 0;
+        }
+
+        /* Top section: ~22% height */
+        .s1-header {
+            flex: 0 0 auto;
+            padding-top: 2vh;
+        }
+        .s1-header .section-label {
+            margin-bottom: 8px;
+        }
+        .s1-header .heading {
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.05;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        .s1-header .heading.visible {
+            animation: slideUpFade 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        .s1-subhead {
+            font-size: 17px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .s1-subhead.visible {
+            animation: slideUpFade 0.7s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Bottom section: ~68% height, 2×3 grid */
+        .s1-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 16px;
+            padding: 2vh 0 3vh;
+            align-content: center;
+        }
+
+        .s1-card {
+            background: #1E2A3A;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        .s1-card.visible {
+            animation: cardPopIn 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        @keyframes cardPopIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .s1-card-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+        .s1-card-placeholder-text {
+            font-size: 13px;
+            color: rgba(255,255,255,0.3);
+            font-weight: 400;
+        }
+
+        /* Overlay label bar */
+        .s1-card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .s1-card-label .team-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .s1-card-label .member-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: #00D4AA;
+        }
+
+        /* ======================================================
+           SLIDE 2 — Team A (20 members)
+           ====================================================== */
+        #slide-2 {
+            display: flex;
+            flex-direction: column;
+            padding: 4vh 4vw 3vh;
+        }
+
+        .s2-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 3vh;
+            flex-shrink: 0;
+        }
+        .s2-top .heading {
+            font-size: clamp(36px, 5.5vw, 64px);
+            line-height: 1;
+        }
+        .s2-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,212,170,0.12);
+            border: 1px solid rgba(0,212,170,0.25);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #00D4AA;
+        }
+        .s2-pill .pill-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #00D4AA;
+        }
+
+        .s2-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 12px;
+            align-content: center;
+        }
+
+        .s2-member {
+            background: #1E1E2E;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 14px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+        }
+        .s2-member.visible {
+            animation: memberSlideUp 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+        @keyframes memberSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .s2-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .s2-info {
+            min-width: 0;
+        }
+        .s2-info .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .s2-info .title {
+            font-size: 11px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+
+        .s2-badge-new {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00D4AA;
+            background: rgba(0,212,170,0.15);
+            border-radius: 4px;
+            padding: 2px 7px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+
+        <!-- ============ SLIDE 1 ============ -->
+        <div class="slide active" id="slide-1">
+            <div class="s1-header">
+                <div class="section-label">02 // OUR PEOPLE</div>
+                <h1 class="heading gradient-text" id="s1-heading">GREAT TOGETHER</h1>
+                <p class="s1-subhead" id="s1-subhead">Building the future as one team</p>
+            </div>
+            <div class="s1-grid" id="s1-grid">
+                <div class="s1-card" data-delay="0"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team A</div><div class="s1-card-label"><span class="team-name">Team A</span><span class="member-count">20</span></div></div>
+                <div class="s1-card" data-delay="1"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team B</div><div class="s1-card-label"><span class="team-name">Team B</span><span class="member-count">30</span></div></div>
+                <div class="s1-card" data-delay="2"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team C</div><div class="s1-card-label"><span class="team-name">Team C</span><span class="member-count">6</span></div></div>
+                <div class="s1-card" data-delay="3"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team D</div><div class="s1-card-label"><span class="team-name">Team D</span><span class="member-count">12</span></div></div>
+                <div class="s1-card" data-delay="4"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team E</div><div class="s1-card-label"><span class="team-name">Team E</span><span class="member-count">10</span></div></div>
+                <div class="s1-card" data-delay="5"><div class="s1-card-icon">📷</div><div class="s1-card-placeholder-text">Team F</div><div class="s1-card-label"><span class="team-name">Team F</span><span class="member-count">8</span></div></div>
+            </div>
+            <div class="progress-bar" id="pb-1"></div>
+        </div>
+
+        <!-- ============ SLIDE 2 ============ -->
+        <div class="slide" id="slide-2">
+            <div class="section-label">02 // OUR PEOPLE</div>
+            <div class="s2-top">
+                <h1 class="heading gradient-text">TEAM A</h1>
+                <div class="s2-pill"><span class="pill-dot"></span>20 Members</div>
+            </div>
+            <div class="s2-grid" id="s2-grid"></div>
+            <div class="progress-bar" id="pb-2"></div>
+        </div>
+
+    </div>
+
+    <script>
+    // ========== DATA ==========
+    const MEMBER_NAMES = [
+        'Alex Chen', 'Sam Lee', 'Jordan Wu', 'Chris Park', 'Taylor Kim',
+        'Morgan Liu', 'Casey Zhang', 'Riley Huang', 'Drew Wang', 'Jamie Xu',
+        'Avery Lin', 'Quinn Zhao', 'Blake Ng', 'River Sun', 'Skyler Ma',
+        'Harper Zhou', 'Indigo Chan', 'Phoenix Lim', 'Sage Wu', 'Cedar Tang'
+    ];
+
+    const MEMBER_TITLES = [
+        'Senior Engineer', 'Frontend Dev', 'Backend Dev', 'QA Lead', 'Tech Lead',
+        'Product Manager', 'DevOps Engineer', 'Data Analyst', 'Scrum Master', 'UX Designer'
+    ];
+
+    const AVATAR_COLORS = [
+        '#4A9EFF', '#00D4AA', '#FF6B9D', '#FFB547', '#A78BFA',
+        '#34D399', '#F87171', '#60A5FA'
+    ];
+
+    function getInitials(name) {
+        return name.split(' ').map(n => n[0]).join('').toUpperCase();
+    }
+
+    function getColor(i) {
+        return AVATAR_COLORS[i % AVATAR_COLORS.length];
+    }
+
+    function getTitle(i) {
+        return MEMBER_TITLES[i % MEMBER_TITLES.length];
+    }
+
+    // ========== SLIDE 2: Build member grid ==========
+    function buildSlide2() {
+        const grid = document.getElementById('s2-grid');
+        grid.innerHTML = '';
+        MEMBER_NAMES.forEach((name, i) => {
+            const card = document.createElement('div');
+            card.className = 's2-member';
+            card.dataset.delay = i;
+
+            let badgeHTML = '';
+            if (i === 0) badgeHTML = '<div class="s2-badge-new">NEW</div>';
+
+            card.innerHTML = `
+                <div class="s2-avatar" style="background:${getColor(i)}">${getInitials(name)}</div>
+                <div class="s2-info">
+                    <div class="name">${name}</div>
+                    <div class="title">${getTitle(i)}</div>
+                </div>
+                ${badgeHTML}
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // ========== ANIMATION ENGINE ==========
+    const slide1 = document.getElementById('slide-1');
+    const slide2 = document.getElementById('slide-2');
+    const pb1 = document.getElementById('pb-1');
+    const pb2 = document.getElementById('pb-2');
+
+    const DURATION_S1 = 6000;  // 6s
+    const DURATION_S2 = 7000;  // 7s
+
+    let currentSlide = 1;
+    let cycleTimer = null;
+    let s1Animated = false;
+
+    function activateSlide(num) {
+        currentSlide = num;
+        slide1.classList.toggle('active', num === 1);
+        slide2.classList.toggle('active', num === 2);
+
+        // Reset & animate progress bar
+        const pb = num === 1 ? pb1 : pb2;
+        const duration = num === 1 ? DURATION_S1 : DURATION_S2;
+
+        pb.classList.remove('animating');
+        pb.style.width = '0%';
+        void pb.offsetWidth; // force reflow
+        pb.style.setProperty('--duration', duration + 'ms');
+        pb.classList.add('animating');
+
+        // Slide 1 animations
+        if (num === 1) {
+            if (!s1Animated) {
+                s1Animated = true;
+                requestAnimationFrame(() => {
+                    // Heading
+                    document.getElementById('s1-heading').classList.add('visible');
+                    document.getElementById('s1-subhead').classList.add('visible');
+                    // Cards stagger
+                    const cards = document.querySelectorAll('#s1-grid .s1-card');
+                    cards.forEach(card => {
+                        const d = parseInt(card.dataset.delay) || 0;
+                        card.style.animationDelay = (0.4 + d * 0.1) + 's';
+                        card.classList.add('visible');
+                    });
+                });
+            }
+        }
+
+        // Slide 2 animations
+        if (num === 2) {
+            const members = document.querySelectorAll('#s2-grid .s2-member');
+            members.forEach(m => {
+                m.classList.remove('visible');
+            });
+            requestAnimationFrame(() => {
+                members.forEach(m => {
+                    const d = parseInt(m.dataset.delay) || 0;
+                    m.style.animationDelay = (0.2 + d * 0.05) + 's';
+                    m.classList.add('visible');
+                });
+            });
+        }
+
+        // Schedule next
+        if (cycleTimer) clearTimeout(cycleTimer);
+        cycleTimer = setTimeout(() => {
+            activateSlide(num === 1 ? 2 : 1);
+        }, duration);
+    }
+
+    // ========== INIT ==========
+    buildSlide2();
+    activateSlide(1);
+    </script>
+</body>
+</html>
