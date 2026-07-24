@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VF DT APAC — Our People (Direction B · Camera Interactive)</title>
+    <title>VF DT APAC — Our People (Direction B · Interactive)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet">
@@ -35,6 +35,7 @@
             overflow: hidden;
             background: var(--bg);
             color: var(--text);
+            cursor: none;
         }
 
         /* ---- Stage ---- */
@@ -59,7 +60,6 @@
 
         /* ---- Shared Typography ---- */
         .section-label {
-            font-family: 'Inter', sans-serif;
             font-size: 12px;
             font-weight: 500;
             color: #444;
@@ -69,7 +69,6 @@
         }
 
         .heading {
-            font-family: 'Inter', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.5px;
@@ -83,26 +82,8 @@
             margin: 0;
         }
 
-        /* ---- Progress Bar ---- */
-        .progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: var(--text);
-            z-index: 100;
-            width: 0%;
-        }
-        .progress-bar.animating {
-            animation: progress-fill var(--duration) linear forwards;
-        }
-        @keyframes progress-fill {
-            from { width: 0%; }
-            to   { width: 100%; }
-        }
-
         /* ======================================================
-           SLIDE 1 — Overview
+           SLIDE 1 — Overview (6 Team Grid · Interactive)
            ====================================================== */
         #slide-1 {
             display: flex;
@@ -161,10 +142,25 @@
             opacity: 0;
             transform: scale(0.92);
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent;
         }
         .s1-card.visible {
             animation: cardPopIn 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
+        .s1-card.hovered {
+            transform: scale(1.04);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            border-color: var(--team-accent);
+            z-index: 10;
+        }
+        .s1-card.activating {
+            transform: scale(1.06);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            border-color: var(--team-accent);
+            z-index: 10;
+        }
+
         @keyframes cardPopIn {
             to { opacity: 1; transform: scale(1); }
         }
@@ -203,8 +199,35 @@
             z-index: 2;
         }
 
+        /* Hover progress ring on card */
+        .card-progress-ring {
+            position: absolute;
+            inset: -2px;
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .card-progress-ring.active {
+            opacity: 1;
+        }
+        .card-progress-ring svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        .card-progress-ring circle {
+            fill: none;
+            stroke: var(--team-accent);
+            stroke-width: 3;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
         /* ======================================================
-           SLIDE 2 — Team A
+           SLIDE 2 — Team Members Detail
            ====================================================== */
         #slide-2 {
             display: flex;
@@ -232,7 +255,6 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--team-a);
             border-radius: 20px;
             padding: 6px 16px;
             font-size: 13px;
@@ -267,7 +289,6 @@
             position: absolute;
             left: 0; top: 0; bottom: 0;
             width: 3px;
-            background: var(--team-a);
             border-radius: 12px 0 0 12px;
         }
         .s2-member.visible {
@@ -287,7 +308,6 @@
             font-size: 14px;
             font-weight: 700;
             color: #fff;
-            background: var(--team-a);
             letter-spacing: 0.5px;
         }
 
@@ -309,9 +329,51 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #fff;
-            background: var(--team-a);
             border-radius: 4px;
             padding: 2px 7px;
+        }
+
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+            background: var(--card-bg);
+            border: 1px solid var(--divider);
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--card-shadow);
+            transition: background 0.2s;
+            pointer-events: auto;
+        }
+        .back-btn:hover { background: #f0f0f0; }
+        .back-btn.visible { display: flex; }
+        .back-btn .back-icon { font-size: 16px; }
+
+        /* Auto-back timer bar on slide 2 */
+        .auto-back-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            z-index: 99;
+            pointer-events: none;
+        }
+        .auto-back-bar.active {
+            background: var(--team-accent, #4A9EFF);
+            animation: backBarShrink 8s linear forwards;
+        }
+        @keyframes backBarShrink {
+            from { width: 100%; }
+            to { width: 0%; }
         }
 
         /* ======================================================
@@ -361,7 +423,6 @@
             -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 6px 14px;
-            font-family: 'Inter', sans-serif;
             font-size: 11px;
             font-weight: 600;
             color: #fff;
@@ -379,49 +440,90 @@
             50% { opacity: 0.4; }
         }
 
-        /* Gesture hint */
-        .gesture-hint {
+        /* ======================================================
+           GUIDE OVERLAY — "Point at a team"
+           ====================================================== */
+        .guide-overlay {
             position: fixed;
-            top: 50%;
+            inset: 0;
+            z-index: 9000;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.6s;
+        }
+        .guide-overlay.fading {
+            opacity: 0;
+        }
+
+        .guide-pointer {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            pointer-events: none;
+            animation: guideFloat 2.5s ease-in-out infinite;
+        }
+        @keyframes guideFloat {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -8px); }
+            50% { transform: translate(-5px, -16px); }
+            75% { transform: translate(-12px, -4px); }
+        }
+
+        .guide-text {
+            position: absolute;
+            bottom: 16%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 30px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+            animation: guideTextPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes guideTextPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Finger cursor dot */
+        .finger-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.7);
+            border: 2px solid rgba(52, 211, 153, 0.9);
             z-index: 9998;
             pointer-events: none;
-            display: flex;
-            align-items: center;
-            gap: 40px;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.5);
             opacity: 0;
-            transition: opacity 400ms;
+            transition: opacity 0.2s;
         }
-        .gesture-hint.show { opacity: 1; }
-        .gesture-arrow {
-            font-size: 48px;
-            color: rgba(255,255,255,0.85);
-            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-            animation: arrow-bounce 1.2s ease-in-out infinite;
-        }
-        .gesture-arrow.left  { animation-delay: 0s; }
-        .gesture-arrow.right { animation-delay: 0.6s; }
-        @keyframes arrow-bounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-12px); }
-        }
-        .gesture-arrow.right {
-            animation-name: arrow-bounce-r;
-        }
-        @keyframes arrow-bounce-r {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(12px); }
-        }
+        .finger-cursor.visible { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <!-- ============ GESTURE HINT ============ -->
-    <div class="gesture-hint" id="gesture-hint">
-        <div class="gesture-arrow left">◀</div>
-        <div class="gesture-arrow right">▶</div>
+    <!-- ============ FINGER CURSOR ============ -->
+    <div class="finger-cursor" id="finger-cursor"></div>
+
+    <!-- ============ GUIDE OVERLAY ============ -->
+    <div class="guide-overlay" id="guide-overlay">
+        <div class="guide-text">👆 Point your finger at a team to explore</div>
     </div>
+
+    <!-- ============ BACK BUTTON ============ -->
+    <button class="back-btn" id="back-btn">
+        <span class="back-icon">←</span> Back to Teams
+    </button>
 
     <!-- ============ CAMERA OVERLAY ============ -->
     <div class="cam-overlay" id="cam-overlay">
@@ -437,173 +539,209 @@
 
     <!-- ============ MAIN STAGE ============ -->
     <div class="stage">
-
-        <!-- SLIDE 1 -->
+        <!-- SLIDE 1 — Team Grid -->
         <div class="slide active" id="slide-1">
             <div class="s1-header">
                 <div class="section-label">02 // OUR PEOPLE</div>
                 <h1 class="heading" id="s1-heading">GREAT TOGETHER</h1>
-                <p class="s1-subhead" id="s1-subhead">Building the future as one team</p>
+                <p class="s1-subhead" id="s1-subhead">Point at a team to meet the members</p>
                 <hr class="divider">
             </div>
-            <div class="s1-grid" id="s1-grid">
-                <div class="s1-card" data-delay="0" style="--team-accent:var(--team-a)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team A</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-a)">Team A</span><span class="member-count">20 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="1" style="--team-accent:var(--team-b)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team B</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-b)">Team B</span><span class="member-count">30 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="2" style="--team-accent:var(--team-c)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team C</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-c)">Team C</span><span class="member-count">6 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="3" style="--team-accent:var(--team-d)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team D</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-d)">Team D</span><span class="member-count">12 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="4" style="--team-accent:var(--team-e)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team E</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-e)">Team E</span><span class="member-count">10 Members</span></div>
-                </div>
-                <div class="s1-card" data-delay="5" style="--team-accent:var(--team-f)">
-                    <div class="s1-card-photo"><div class="camera-icon">📷</div><div class="photo-label">Team F</div></div>
-                    <div class="s1-card-bottom"><span class="team-name" style="color:var(--team-f)">Team F</span><span class="member-count">8 Members</span></div>
-                </div>
-            </div>
-            <div class="progress-bar" id="pb-1"></div>
+            <div class="s1-grid" id="s1-grid"></div>
         </div>
 
-        <!-- SLIDE 2 -->
+        <!-- SLIDE 2 — Team Members Detail -->
         <div class="slide" id="slide-2">
+            <div class="auto-back-bar" id="auto-back-bar"></div>
             <div class="s2-top-area">
                 <div class="section-label">02 // OUR PEOPLE</div>
                 <div class="s2-top-row">
-                    <h1 class="heading">TEAM A</h1>
-                    <div class="s2-pill">20 Members</div>
+                    <h1 class="heading" id="s2-team-name">TEAM A</h1>
+                    <div class="s2-pill" id="s2-pill">20 Members</div>
                 </div>
                 <hr class="divider">
             </div>
             <div class="s2-grid" id="s2-grid"></div>
-            <div class="progress-bar" id="pb-2"></div>
         </div>
-
     </div>
 
     <script>
     // ============================================
-    // DATA
+    // TEAM DATA
     // ============================================
-    const MEMBER_NAMES = [
-        'Alex Chen', 'Sam Lee', 'Jordan Wu', 'Chris Park', 'Taylor Kim',
-        'Morgan Liu', 'Casey Zhang', 'Riley Huang', 'Drew Wang', 'Jamie Xu',
-        'Avery Lin', 'Quinn Zhao', 'Blake Ng', 'River Sun', 'Skyler Ma',
-        'Harper Zhou', 'Indigo Chan', 'Phoenix Lim', 'Sage Wu', 'Cedar Tang'
+    const TEAMS = [
+        { id: 'team-a', name: 'Team A', accent: '#4A9EFF', members: 20, short: 'A' },
+        { id: 'team-b', name: 'Team B', accent: '#FF6B9D', members: 30, short: 'B' },
+        { id: 'team-c', name: 'Team C', accent: '#34D399', members: 6,  short: 'C' },
+        { id: 'team-d', name: 'Team D', accent: '#FFB547', members: 12, short: 'D' },
+        { id: 'team-e', name: 'Team E', accent: '#A78BFA', members: 10, short: 'E' },
+        { id: 'team-f', name: 'Team F', accent: '#F87171', members: 8,  short: 'F' },
     ];
 
+    const MEMBER_FIRST_NAMES = [
+        'Alex', 'Sam', 'Jordan', 'Chris', 'Taylor',
+        'Morgan', 'Casey', 'Riley', 'Drew', 'Jamie',
+        'Avery', 'Quinn', 'Blake', 'River', 'Skyler',
+        'Harper', 'Indigo', 'Phoenix', 'Sage', 'Cedar',
+        'Dakota', 'Emery', 'Finley', 'Gray', 'Hunter',
+        'Iris', 'Jules', 'Kai', 'Lane', 'Marlow'
+    ];
+    const MEMBER_LAST_NAMES = [
+        'Chen', 'Lee', 'Wu', 'Park', 'Kim',
+        'Liu', 'Zhang', 'Huang', 'Wang', 'Xu',
+        'Lin', 'Zhao', 'Ng', 'Sun', 'Ma',
+        'Zhou', 'Chan', 'Lim', 'Tan', 'Tang',
+        'Ho', 'Ko', 'Loh', 'Goh', 'Teo',
+        'Chua', 'Kwan', 'Yap', 'Ong', 'Sim'
+    ];
     const MEMBER_TITLES = [
         'Senior Engineer', 'Frontend Dev', 'Backend Dev', 'QA Lead', 'Tech Lead',
-        'Product Manager', 'DevOps Engineer', 'Data Analyst', 'Scrum Master', 'UX Designer'
+        'Product Manager', 'DevOps Engineer', 'Data Analyst', 'Scrum Master', 'UX Designer',
+        'Engineering Manager', 'Full Stack Dev', 'Security Engineer', 'Data Scientist', 'Design Lead'
     ];
 
-    function getInitials(name) { return name.split(' ').map(n => n[0]).join('').toUpperCase(); }
-    function getTitle(i) { return MEMBER_TITLES[i % MEMBER_TITLES.length]; }
+    function getInitials(first, last) { return (first[0] + last[0]).toUpperCase(); }
+    function getMemberName(i) { return MEMBER_FIRST_NAMES[i] + ' ' + MEMBER_LAST_NAMES[i]; }
+    function getMemberTitle(i) { return MEMBER_TITLES[i % MEMBER_TITLES.length]; }
 
     // ============================================
-    // BUILD SLIDE 2
+    // BUILD SLIDE 1 — Team Grid
     // ============================================
-    function buildSlide2() {
-        const grid = document.getElementById('s2-grid');
+    function buildSlide1() {
+        const grid = document.getElementById('s1-grid');
         grid.innerHTML = '';
-        MEMBER_NAMES.forEach((name, i) => {
+        TEAMS.forEach((team, i) => {
             const card = document.createElement('div');
-            card.className = 's2-member';
+            card.className = 's1-card';
+            card.dataset.teamIndex = i;
             card.dataset.delay = i;
-            let badgeHTML = i === 0 ? '<div class="s2-badge-new">NEW</div>' : '';
+            card.style.setProperty('--team-accent', team.accent);
             card.innerHTML = `
-                <div class="s2-avatar">${getInitials(name)}</div>
-                <div class="s2-info">
-                    <div class="name">${name}</div>
-                    <div class="title">${getTitle(i)}</div>
+                <div class="card-progress-ring">
+                    <svg viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="96"
+                            stroke="${team.accent}" stroke-width="3" fill="none"
+                            stroke-linecap="round"
+                            stroke-dasharray="603.19"
+                            stroke-dashoffset="603.19"
+                            transform="rotate(-90 100 100)"
+                            style="transition: stroke-dashoffset 0.1s linear;" />
+                    </svg>
                 </div>
-                ${badgeHTML}
+                <div class="s1-card-photo">
+                    <div class="camera-icon">📷</div>
+                    <div class="photo-label">${team.name}</div>
+                </div>
+                <div class="s1-card-bottom">
+                    <span class="team-name" style="color:${team.accent}">${team.name}</span>
+                    <span class="member-count">${team.members} Members</span>
+                </div>
             `;
             grid.appendChild(card);
         });
     }
 
     // ============================================
-    // SLIDE ENGINE
+    // BUILD SLIDE 2 — Team Members
+    // ============================================
+    function buildSlide2(teamIndex) {
+        const team = TEAMS[teamIndex];
+        const grid = document.getElementById('s2-grid');
+        const teamNameEl = document.getElementById('s2-team-name');
+        const pillEl = document.getElementById('s2-pill');
+        const autoBackBar = document.getElementById('auto-back-bar');
+
+        document.getElementById('slide-2').style.setProperty('--team-accent', team.accent);
+
+        teamNameEl.textContent = team.name.toUpperCase();
+        pillEl.textContent = team.members + ' Members';
+        pillEl.style.background = team.accent;
+
+        // Build member cards
+        grid.innerHTML = '';
+        for (let i = 0; i < Math.min(team.members, 20); i++) {
+            const card = document.createElement('div');
+            card.className = 's2-member';
+            card.dataset.delay = i;
+            card.style.setProperty('--team-accent', team.accent);
+            const fName = MEMBER_FIRST_NAMES[i];
+            const lName = MEMBER_LAST_NAMES[i];
+            const fullName = fName + ' ' + lName;
+            const badgeHTML = i === 0 ? `<div class="s2-badge-new" style="background:${team.accent}">NEW</div>` : '';
+            card.innerHTML = `
+                <div class="s2-avatar" style="background:${team.accent}">${getInitials(fName, lName)}</div>
+                <div class="s2-info">
+                    <div class="name">${fullName}</div>
+                    <div class="title">${getMemberTitle(i)}</div>
+                </div>
+                ${badgeHTML}
+            `;
+            card.style.setProperty('--team-accent', team.accent);
+            card.querySelector('.s2-member')?.style?.setProperty?.('--team-accent', team.accent);
+            // Fix: apply ::before color
+            card.style.setProperty('--team-accent-before', team.accent);
+            const styleTag = document.createElement('style');
+            styleTag.textContent = `.s2-member[data-delay="${i}"]::before { background: ${team.accent} !important; }`;
+            card.appendChild(styleTag);
+            grid.appendChild(card);
+        }
+
+        // Animate members in
+        requestAnimationFrame(() => {
+            const members = grid.querySelectorAll('.s2-member');
+            members.forEach(m => {
+                const d = parseInt(m.dataset.delay) || 0;
+                m.style.animationDelay = (0.2 + d * 0.05) + 's';
+                m.classList.add('visible');
+            });
+        });
+
+        // Auto-back bar
+        autoBackBar.classList.remove('active');
+        void autoBackBar.offsetWidth;
+        autoBackBar.style.background = team.accent;
+        autoBackBar.classList.add('active');
+    }
+
+    // ============================================
+    // SLIDE NAVIGATION
     // ============================================
     const slide1 = document.getElementById('slide-1');
     const slide2 = document.getElementById('slide-2');
-    const pb1 = document.getElementById('pb-1');
-    const pb2 = document.getElementById('pb-2');
-
-    const DURATION_S1 = 6000;
-    const DURATION_S2 = 7000;
+    const backBtn = document.getElementById('back-btn');
+    const autoBackBar = document.getElementById('auto-back-bar');
 
     let currentSlide = 1;
-    let cycleTimer = null;
-    let s1Animated = false;
-    let autoPlayEnabled = true;
+    let currentTeamIndex = 0;
+    let autoBackTimer = null;
 
-    function activateSlide(num) {
-        currentSlide = num;
-        slide1.classList.toggle('active', num === 1);
-        slide2.classList.toggle('active', num === 2);
-
-        const pb = num === 1 ? pb1 : pb2;
-        const duration = num === 1 ? DURATION_S1 : DURATION_S2;
-
-        pb.classList.remove('animating');
-        pb.style.width = '0%';
-        void pb.offsetWidth;
-        pb.style.setProperty('--duration', duration + 'ms');
-        pb.classList.add('animating');
-
-        if (num === 1 && !s1Animated) {
-            s1Animated = true;
-            requestAnimationFrame(() => {
-                document.getElementById('s1-heading').classList.add('visible');
-                document.getElementById('s1-subhead').classList.add('visible');
-                document.querySelectorAll('#s1-grid .s1-card').forEach(card => {
-                    const d = parseInt(card.dataset.delay) || 0;
-                    card.style.animationDelay = (0.4 + d * 0.1) + 's';
-                    card.classList.add('visible');
-                });
-            });
-        }
-
-        if (num === 2) {
-            const members = document.querySelectorAll('#s2-grid .s2-member');
-            members.forEach(m => m.classList.remove('visible'));
-            requestAnimationFrame(() => {
-                members.forEach(m => {
-                    const d = parseInt(m.dataset.delay) || 0;
-                    m.style.animationDelay = (0.2 + d * 0.05) + 's';
-                    m.classList.add('visible');
-                });
-            });
-        }
-
-        if (cycleTimer) clearTimeout(cycleTimer);
-        if (autoPlayEnabled) {
-            cycleTimer = setTimeout(() => {
-                activateSlide(num === 1 ? 2 : 1);
-            }, duration);
-        }
+    function goToSlide1() {
+        currentSlide = 1;
+        slide1.classList.add('active');
+        slide2.classList.remove('active');
+        backBtn.classList.remove('visible');
+        autoBackBar.classList.remove('active');
+        if (autoBackTimer) { clearTimeout(autoBackTimer); autoBackTimer = null; }
+        // Show guide again
+        const guide = document.getElementById('guide-overlay');
+        guide.classList.remove('fading');
     }
 
-    function scheduleNext() {
-        if (cycleTimer) clearTimeout(cycleTimer);
-        if (!autoPlayEnabled) return;
-        const duration = currentSlide === 1 ? DURATION_S1 : DURATION_S2;
-        cycleTimer = setTimeout(() => {
-            activateSlide(currentSlide === 1 ? 2 : 1);
-        }, duration);
+    function goToSlide2(teamIndex) {
+        currentTeamIndex = teamIndex;
+        currentSlide = 2;
+        buildSlide2(teamIndex);
+        slide1.classList.remove('active');
+        slide2.classList.add('active');
+        backBtn.classList.add('visible');
+        // Hide guide
+        document.getElementById('guide-overlay').classList.add('fading');
+        // Auto-back after 8 seconds
+        if (autoBackTimer) clearTimeout(autoBackTimer);
+        autoBackTimer = setTimeout(goToSlide1, 8000);
     }
+
+    backBtn.addEventListener('click', goToSlide1);
 
     // ============================================
     // CAMERA + INTERACTION ENGINE
@@ -613,33 +751,24 @@
     const ctx = canvas.getContext('2d');
     const camDot = document.getElementById('cam-dot');
     const camText = document.getElementById('cam-text');
-    const gestureHint = document.getElementById('gesture-hint');
-
-    let faceDetector = null;
-    let lastFaceCount = 0;
-    let faceHistory = []; // rolling window for debounce
-    const FACE_HISTORY_SIZE = 10;
-    const PERSON_THRESHOLD = 0.7; // 70% of recent frames must have a face to consider "present"
+    const fingerCursor = document.getElementById('finger-cursor');
+    const guideOverlay = document.getElementById('guide-overlay');
 
     let handLandmarker = null;
-    let lastGestureTime = 0;
-    const GESTURE_COOLDOWN = 800; // ms between gesture actions
-    let handPosX = 0;
-    let handPosHistory = [];
-    const HAND_HISTORY_SIZE = 15;
-    const SWIPE_THRESHOLD = 0.15; // normalized x movement
-
     let camReady = false;
-    let detectionRunning = false;
     let lastDetectionTime = 0;
-    const DETECTION_INTERVAL = 150; // ms between detection frames
+    const DETECTION_INTERVAL = 100; // ms
+
+    // Per-card hover tracking
+    let cardHoverTimers = {}; // teamIndex -> { startTime, active }
+    const HOVER_THRESHOLD = 1500; // 1.5s hover to activate
 
     function setStatus(state, text) {
         camDot.className = 'cam-dot';
-        if (state === 'active') camText.textContent = text || 'Person detected · Auto-play ON';
+        if (state === 'active') camText.textContent = text || 'Camera ready · Point at a team';
         else if (state === 'away') {
             camDot.classList.add('away');
-            camText.textContent = text || 'No one around · Auto-play OFF';
+            camText.textContent = text || 'No hand detected';
         } else {
             camDot.classList.add('off');
             camText.textContent = text || 'Camera off';
@@ -657,36 +786,23 @@
             canvas.width = 640;
             canvas.height = 480;
 
-            setStatus('active', 'Camera ready · Detecting...');
+            setStatus('active', 'Camera ready · Loading AI...');
             camReady = true;
 
-            await loadMediaPipeModels();
+            await loadMediaPipeModel();
             requestAnimationFrame(detectionLoop);
         } catch (err) {
-            console.warn('Camera access denied or unavailable:', err.message);
-            setStatus('off', 'Camera unavailable · Auto-play ON');
+            console.warn('Camera access denied:', err.message);
+            setStatus('off', 'Camera unavailable · Keyboard mode');
             camReady = false;
-            // Fallback: auto-play without camera
         }
     }
 
-    async function loadMediaPipeModels() {
+    async function loadMediaPipeModel() {
         const vision = await FilesetResolver.forVisionTasks(
             'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
         );
 
-        // Face Detector (presence)
-        faceDetector = await FaceDetector.createFromOptions(vision, {
-            baseOptions: {
-                modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite',
-                delegate: 'GPU'
-            },
-            runningMode: 'VIDEO',
-            minDetectionConfidence: 0.5,
-            minSuppressionThreshold: 0.3
-        });
-
-        // Hand Landmarker (gestures)
         handLandmarker = await HandLandmarker.createFromOptions(vision, {
             baseOptions: {
                 modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
@@ -694,15 +810,65 @@
             },
             runningMode: 'VIDEO',
             numHands: 1,
-            minHandDetectionConfidence: 0.6,
-            minTrackingConfidence: 0.5
+            minHandDetectionConfidence: 0.5,
+            minTrackingConfidence: 0.4
         });
 
-        setStatus('active', 'AI models loaded · Detecting...');
+        setStatus('active', 'AI ready · Point at a team!');
+    }
+
+    function getCardAtPoint(screenX, screenY) {
+        const cards = document.querySelectorAll('#s1-grid .s1-card');
+        for (const card of cards) {
+            const rect = card.getBoundingClientRect();
+            if (screenX >= rect.left && screenX <= rect.right &&
+                screenY >= rect.top && screenY <= rect.bottom) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    function updateHoverProgress(card, elapsed) {
+        const progressRing = card.querySelector('.card-progress-ring');
+        if (!progressRing) return;
+        const circle = progressRing.querySelector('circle');
+        if (!circle) return;
+
+        const progress = Math.min(elapsed / HOVER_THRESHOLD, 1.0);
+        const circumference = 603.19;
+        const offset = circumference * (1 - progress);
+        circle.style.strokeDashoffset = offset;
+
+        if (elapsed > 0) {
+            progressRing.classList.add('active');
+        } else {
+            progressRing.classList.remove('active');
+        }
+
+        // Visual states
+        card.classList.remove('hovered', 'activating');
+        if (progress >= 1.0) {
+            card.classList.add('activating');
+        } else if (elapsed > 200) {
+            card.classList.add('hovered');
+        }
+    }
+
+    function resetAllHoverStates() {
+        document.querySelectorAll('#s1-grid .s1-card').forEach(card => {
+            card.classList.remove('hovered', 'activating');
+            const ring = card.querySelector('.card-progress-ring');
+            if (ring) {
+                ring.classList.remove('active');
+                const circle = ring.querySelector('circle');
+                if (circle) circle.style.strokeDashoffset = '603.19';
+            }
+        });
     }
 
     async function detectionLoop(timestamp) {
-        if (!camReady || !faceDetector || !handLandmarker) {
+        if (!camReady || !handLandmarker) {
             requestAnimationFrame(detectionLoop);
             return;
         }
@@ -727,57 +893,26 @@
 
             const now = performance.now();
 
-            // Face detection for presence
-            const faceResult = faceDetector.detectForVideo(video, now);
-            const faceCount = faceResult.detections.length;
-
-            faceHistory.push(faceCount > 0 ? 1 : 0);
-            if (faceHistory.length > FACE_HISTORY_SIZE) faceHistory.shift();
-
-            const presenceRatio = faceHistory.reduce((a, b) => a + b, 0) / faceHistory.length;
-            const someonePresent = presenceRatio >= PERSON_THRESHOLD;
-
-            // Draw face boxes
-            faceResult.detections.forEach(d => {
-                const box = d.boundingBox;
-                // Mirror x for canvas display
-                const mx = canvas.width - box.originX - box.width;
-                ctx.strokeStyle = '#4A9EFF';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(mx, box.originY, box.width, box.height);
-            });
-
-            // Hand gesture detection (only when someone is present)
-            if (someonePresent) {
+            if (currentSlide === 1) {
+                // Only track hand on slide 1
                 const handResult = handLandmarker.detectForVideo(video, now);
-                if (handResult.landmarks.length > 0) {
-                    const wrist = handResult.landmarks[0][0]; // wrist
-                    handPosHistory.push(wrist.x);
-                    if (handPosHistory.length > HAND_HISTORY_SIZE) handPosHistory.shift();
+                const hasHand = handResult.landmarks.length > 0;
 
-                    // Detect swipe
-                    if (handPosHistory.length >= HAND_HISTORY_SIZE) {
-                        const dx = handPosHistory[handPosHistory.length - 1] - handPosHistory[0];
-                        if (Math.abs(dx) > SWIPE_THRESHOLD && (now - lastGestureTime) > GESTURE_COOLDOWN) {
-                            lastGestureTime = now;
-                            if (dx > 0) {
-                                // Swipe right → previous slide
-                                if (currentSlide === 2) {
-                                    activateSlide(1);
-                                    showGestureHint('◀');
-                                }
-                            } else {
-                                // Swipe left → next slide
-                                if (currentSlide === 1) {
-                                    activateSlide(2);
-                                    showGestureHint('▶');
-                                }
-                            }
-                            handPosHistory = [];
-                        }
-                    }
+                if (hasHand) {
+                    setStatus('active', 'Hand detected · Point at a team');
+                    const indexFingerTip = handResult.landmarks[0][8]; // index finger tip
 
-                    // Draw hand landmarks
+                    // Mirror the x coordinate (camera is mirrored)
+                    const mirroredX = 1 - indexFingerTip.x;
+                    const screenX = mirroredX * window.innerWidth;
+                    const screenY = indexFingerTip.y * window.innerHeight;
+
+                    // Show finger cursor
+                    fingerCursor.style.left = screenX + 'px';
+                    fingerCursor.style.top = screenY + 'px';
+                    fingerCursor.classList.add('visible');
+
+                    // Draw hand landmarks on preview
                     handResult.landmarks[0].forEach(lm => {
                         const mx = canvas.width - lm.x * canvas.width;
                         const my = lm.y * canvas.height;
@@ -786,22 +921,56 @@
                         ctx.arc(mx, my, 3, 0, Math.PI * 2);
                         ctx.fill();
                     });
-                }
-            }
 
-            // Presence → auto-play logic
-            if (someonePresent !== (autoPlayEnabled || faceHistory.length < FACE_HISTORY_SIZE)) {
-                if (someonePresent && faceHistory.length >= FACE_HISTORY_SIZE) {
-                    // Person arrived
-                    autoPlayEnabled = true;
-                    setStatus('active', 'Person detected · Auto-play ON');
-                    scheduleNext();
-                } else if (!someonePresent && faceHistory.length >= FACE_HISTORY_SIZE) {
-                    // Person left
-                    autoPlayEnabled = false;
-                    setStatus('away', 'No one around · Auto-play OFF');
-                    if (cycleTimer) clearTimeout(cycleTimer);
+                    // Highlight index fingertip
+                    const tipMx = canvas.width - indexFingerTip.x * canvas.width;
+                    const tipMy = indexFingerTip.y * canvas.height;
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(tipMx, tipMy, 8, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    // Check which card the finger is over
+                    const hoveredCard = getCardAtPoint(screenX, screenY);
+
+                    // Update hover timers
+                    const nowMs = Date.now();
+                    for (let i = 0; i < TEAMS.length; i++) {
+                        const card = document.querySelector(`#s1-grid .s1-card[data-team-index="${i}"]`);
+                        if (!card) continue;
+
+                        if (card === hoveredCard) {
+                            if (!cardHoverTimers[i]) {
+                                cardHoverTimers[i] = { startTime: nowMs };
+                            }
+                            const elapsed = nowMs - cardHoverTimers[i].startTime;
+                            updateHoverProgress(card, elapsed);
+
+                            // Trigger activation
+                            if (elapsed >= HOVER_THRESHOLD) {
+                                delete cardHoverTimers[i];
+                                resetAllHoverStates();
+                                fingerCursor.classList.remove('visible');
+                                goToSlide2(i);
+                                return; // Skip rest of this frame
+                            }
+                        } else {
+                            delete cardHoverTimers[i];
+                            updateHoverProgress(card, 0);
+                        }
+                    }
+                } else {
+                    // No hand detected
+                    fingerCursor.classList.remove('visible');
+                    setStatus('active', 'No hand · Show your hand to explore');
+                    resetAllHoverStates();
+                    cardHoverTimers = {};
                 }
+            } else {
+                // On slide 2, just show camera preview
+                fingerCursor.classList.remove('visible');
+                setStatus('active', 'Watching team members...');
             }
 
         } catch (e) {
@@ -811,40 +980,65 @@
         requestAnimationFrame(detectionLoop);
     }
 
-    function showGestureHint(direction) {
-        const arrows = gestureHint.querySelectorAll('.gesture-arrow');
-        arrows.forEach(a => a.style.opacity = a.classList.contains(direction === '◀' ? 'left' : 'right') ? '1' : '0.3');
-        gestureHint.classList.add('show');
-        clearTimeout(gestureHint._timeout);
-        gestureHint._timeout = setTimeout(() => {
-            gestureHint.classList.remove('show');
-        }, 1200);
-    }
-
     // ============================================
-    // KEYBOARD FALLBACK (left/right arrows)
+    // KEYBOARD FALLBACK
     // ============================================
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            if (currentSlide === 1) activateSlide(2);
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            if (currentSlide === 2) activateSlide(1);
-        } else if (e.key === ' ') {
-            e.preventDefault();
-            autoPlayEnabled = !autoPlayEnabled;
-            setStatus(autoPlayEnabled ? 'active' : 'away',
-                autoPlayEnabled ? 'Auto-play ON' : 'Auto-play OFF (manual)');
-            if (autoPlayEnabled) scheduleNext();
-            else if (cycleTimer) clearTimeout(cycleTimer);
+        if (e.key === 'Escape' && currentSlide === 2) {
+            goToSlide1();
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            if (currentSlide === 1) {
+                // Cycle team selection with keyboard
+                const cards = document.querySelectorAll('#s1-grid .s1-card');
+                const current = document.querySelector('#s1-grid .s1-card.activating, #s1-grid .s1-card.hovered');
+                let nextIdx = 0;
+                if (current) {
+                    const ci = parseInt(current.dataset.teamIndex);
+                    nextIdx = (ci + 1) % TEAMS.length;
+                }
+                // Highlight and activate
+                resetAllHoverStates();
+                const nextCard = document.querySelector(`#s1-grid .s1-card[data-team-index="${nextIdx}"]`);
+                if (nextCard) {
+                    nextCard.classList.add('activating');
+                    const ring = nextCard.querySelector('.card-progress-ring');
+                    if (ring) {
+                        ring.classList.add('active');
+                        const circle = ring.querySelector('circle');
+                        if (circle) circle.style.strokeDashoffset = '0';
+                    }
+                }
+            }
+        } else if (e.key === 'Enter' && currentSlide === 1) {
+            const active = document.querySelector('#s1-grid .s1-card.activating, #s1-grid .s1-card.hovered');
+            if (active) {
+                const idx = parseInt(active.dataset.teamIndex);
+                goToSlide2(idx);
+            }
+        } else if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4' || e.key === '5' || e.key === '6') {
+            if (currentSlide === 1) {
+                const idx = parseInt(e.key) - 1;
+                goToSlide2(idx);
+            }
         }
     });
 
     // ============================================
     // INIT
     // ============================================
-    buildSlide2();
-    activateSlide(1);
+    buildSlide1();
     initCamera();
+
+    // Animate slide 1 entrance
+    requestAnimationFrame(() => {
+        document.getElementById('s1-heading').classList.add('visible');
+        document.getElementById('s1-subhead').classList.add('visible');
+        document.querySelectorAll('#s1-grid .s1-card').forEach(card => {
+            const d = parseInt(card.dataset.delay) || 0;
+            card.style.animationDelay = (0.4 + d * 0.1) + 's';
+            card.classList.add('visible');
+        });
+    });
     </script>
 </body>
 </html>
